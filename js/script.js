@@ -1,3 +1,29 @@
+// Layout metrics cache to optimize scroll performance and avoid layout thrashing
+let sectionMetrics = [];
+let homeHeight = 0;
+let contactTop = 0;
+
+function cacheSectionMetrics() {
+    const sections = document.querySelectorAll("section");
+    const homeSection = document.getElementById("home");
+    const contactSection = document.getElementById("contact");
+
+    sectionMetrics = [];
+    sections.forEach((section) => {
+        sectionMetrics.push({
+            id: section.getAttribute("id"),
+            top: section.offsetTop,
+            height: section.offsetHeight
+        });
+    });
+    if (homeSection) homeHeight = homeSection.offsetHeight;
+    if (contactSection) contactTop = contactSection.offsetTop;
+}
+
+// Recalculate metrics on load and window resize
+window.addEventListener("load", cacheSectionMetrics);
+window.addEventListener("resize", cacheSectionMetrics);
+
 document.addEventListener("DOMContentLoaded", function () {
     // 1. Typed.js Typewriter Animation
     if (document.getElementById("typed-text")) {
@@ -57,21 +83,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // 4. Scrollspy active link highlighting (Text White / Text Zinc-400)
-    const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll("nav a:not(.btn-pill)");
+
+    // Initialize metrics cache as soon as DOM is ready
+    cacheSectionMetrics();
 
     window.addEventListener("scroll", () => {
         let current = "";
         const scrollPos = window.scrollY + 150; // trigger offset
 
-        sections.forEach((section) => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
+        sectionMetrics.forEach((sec) => {
             if (
-                scrollPos >= sectionTop &&
-                scrollPos < sectionTop + sectionHeight
+                scrollPos >= sec.top &&
+                scrollPos < sec.top + sec.height
             ) {
-                current = section.getAttribute("id");
+                current = sec.id;
             }
         });
 
@@ -203,6 +229,9 @@ if (btnToggleProjects && extraProjects.length > 0) {
             }
         });
 
+        // Recalculate layout metrics cache since heights changed
+        cacheSectionMetrics();
+
         const span = btnToggleProjects.querySelector("span");
         const svg = btnToggleProjects.querySelector("svg");
 
@@ -259,3 +288,125 @@ if (themeToggleBtn) {
 if (themeToggleBtnMobile) {
     themeToggleBtnMobile.addEventListener("click", toggleTheme);
 }
+
+// 9. Floating Social Media Dock & Copy Email
+const btnCopyEmail = document.getElementById("btn-copy-email");
+if (btnCopyEmail) {
+    btnCopyEmail.addEventListener("click", function () {
+        const email = this.getAttribute("data-email");
+        navigator.clipboard.writeText(email).then(() => {
+            const tooltip = this.querySelector(".copied-tooltip");
+            if (tooltip) {
+                tooltip.classList.add("show");
+                setTimeout(() => {
+                    tooltip.classList.remove("show");
+                }, 2000);
+            }
+        }).catch(err => {
+            console.error("Failed to copy text: ", err);
+        });
+    });
+}
+
+// Scroll Logic for Floating Social Dock
+const floatDock = document.getElementById("floating-social-dock");
+const mobileDockContainer = document.getElementById("mobile-social-fab-container");
+const homeSection = document.getElementById("home");
+const contactSection = document.getElementById("contact");
+
+function handleScrollSocialDock() {
+    const scrollY = window.scrollY;
+    const triggerOffset = window.innerHeight * 0.75; // show a bit before leaving home, hide a bit before reaching contact
+
+    // 1. Hide on Home Section
+    const leftHome = scrollY > (homeHeight - 150);
+
+    // 2. Hide when reaching Get in Touch Section
+    const reachedContact = (scrollY + triggerOffset) > contactTop;
+
+    const shouldShow = leftHome && !reachedContact;
+
+    if (shouldShow) {
+        if (floatDock) floatDock.classList.add("visible-dock");
+        if (mobileDockContainer) mobileDockContainer.classList.add("visible-dock");
+    } else {
+        if (floatDock) floatDock.classList.remove("visible-dock");
+        if (mobileDockContainer) mobileDockContainer.classList.remove("visible-dock");
+        // Also collapse mobile menu if it was open
+        if (mobileSocialMenu && mobileSocialMenu.classList.contains("expanded")) {
+            toggleMobileSocialMenu();
+        }
+    }
+}
+
+// Mobile FAB Toggle Interaction
+const mobileSocialFabToggle = document.getElementById("mobile-social-fab-toggle");
+const mobileSocialMenu = document.getElementById("mobile-social-menu");
+const shareIcon = document.getElementById("mobile-social-share-icon");
+const closeIconFAB = document.getElementById("mobile-social-close-icon");
+
+function toggleMobileSocialMenu() {
+    if (!mobileSocialMenu) return;
+    const isExpanded = mobileSocialMenu.classList.contains("expanded");
+    if (isExpanded) {
+        mobileSocialMenu.classList.remove("expanded");
+        mobileSocialFabToggle.classList.remove("active");
+        if (shareIcon) shareIcon.classList.remove("hidden");
+        if (closeIconFAB) closeIconFAB.classList.add("hidden");
+    } else {
+        mobileSocialMenu.classList.add("expanded");
+        mobileSocialFabToggle.classList.add("active");
+        if (shareIcon) shareIcon.classList.add("hidden");
+        if (closeIconFAB) closeIconFAB.classList.remove("hidden");
+    }
+}
+
+if (mobileSocialFabToggle) {
+    mobileSocialFabToggle.addEventListener("click", toggleMobileSocialMenu);
+}
+
+window.addEventListener("scroll", handleScrollSocialDock);
+// Initial check on load
+handleScrollSocialDock();
+
+// 10. Tech Console Dashboard Tabs Toggle
+const consoleTabs = document.querySelectorAll(".console-tab-btn");
+const consolePanels = document.querySelectorAll(".console-panel-content");
+
+if (consoleTabs.length > 0 && consolePanels.length > 0) {
+    consoleTabs.forEach(tab => {
+        tab.addEventListener("click", function () {
+            // Remove active state from all tabs
+            consoleTabs.forEach(t => {
+                t.classList.remove("active");
+                t.classList.remove("border-zinc-800");
+                t.classList.add("border-transparent");
+                t.classList.remove("bg-zinc-950/20");
+                const indicator = t.querySelector(".tab-indicator");
+                if (indicator) indicator.classList.add("invisible");
+            });
+
+            // Set active state on clicked tab
+            this.classList.add("active");
+            this.classList.remove("border-transparent");
+            this.classList.add("border-zinc-800");
+            this.classList.add("bg-zinc-950/20");
+            const indicator = this.querySelector(".tab-indicator");
+            if (indicator) indicator.classList.remove("invisible");
+
+            // Hide all panels
+            const targetPanelId = this.getAttribute("data-tab");
+            consolePanels.forEach(panel => {
+                panel.classList.add("hidden");
+            });
+
+            // Show selected panel
+            const targetPanel = document.getElementById(targetPanelId);
+            if (targetPanel) {
+                targetPanel.classList.remove("hidden");
+            }
+        });
+    });
+}
+
+

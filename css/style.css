@@ -25,6 +25,7 @@
   --pill-primary-hover-bg: #e4e4e7;
   --spotlight-color-1: rgba(99, 102, 241, 0.055);
   --spotlight-color-2: rgba(16, 185, 129, 0.015);
+  --float-icon-opacity: 0.03;
 }
 
 /* Light Mode Overrides */
@@ -51,11 +52,13 @@ body.light {
   --pill-primary-hover-bg: #18181b;
   --spotlight-color-1: rgba(99, 102, 241, 0.03);
   --spotlight-color-2: rgba(16, 185, 129, 0.005);
+  --float-icon-opacity: 0.015;
 }
 
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 90px;
+  overflow-x: hidden; /* Prevents horizontal scroll from AOS animations */
 }
 
 /* Custom Scrollbar - Sleek & Thin */
@@ -82,9 +85,25 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: var(--bg-color);
   color: var(--text-color);
-  overflow-x: hidden;
   letter-spacing: -0.01em;
   transition: background-color 0.4s ease, color 0.3s ease;
+}
+
+/* Prevent AOS translate animations from causing horizontal overflow
+   that clips the fixed navbar on mobile.
+   Using 'clip' instead of 'hidden' on main because:
+   - overflow: hidden creates a new scroll container which makes
+     position:fixed elements lose their viewport-relative positioning
+   - overflow: clip does NOT create a scroll container, so fixed
+     elements (navbar) stay correctly pinned to the viewport */
+main {
+  overflow-x: clip;
+}
+
+/* Ensure fixed navbar is never clipped by parent overflow */
+nav[class*="fixed"] {
+  transform: translateZ(0); /* Force GPU layer, prevents clipping edge case */
+  will-change: auto;
 }
 
 /* Typography Helpers */
@@ -202,12 +221,22 @@ nav.scrolled {
   pointer-events: none;
   z-index: -1; /* Behind text but above grid overlay */
   background: radial-gradient(
-    600px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh),
-    var(--spotlight-color-1),
-    var(--spotlight-color-2) 30%,
+    450px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh),
+    rgba(66, 133, 244, 0.04) 0%,
+    rgba(155, 81, 224, 0.03) 25%,
+    rgba(0, 242, 254, 0.01) 50%,
     transparent 80%
   );
   transition: opacity 0.5s ease;
+}
+body.light .mouse-spotlight {
+  background: radial-gradient(
+    450px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh),
+    rgba(66, 133, 244, 0.02) 0%,
+    rgba(155, 81, 224, 0.015) 25%,
+    rgba(0, 242, 254, 0.005) 50%,
+    transparent 80%
+  );
 }
 
 /* Hide spotlight on touch screens where mousemove is not active */
@@ -495,4 +524,264 @@ body.light .text-zinc-300 {
 body.light .border-zinc-800\/80 {
   border-color: #d4d4d8 !important;
 }
+
+/* ===== Simplified Skills Tech Tags ===== */
+.tech-tag {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.tech-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.03);
+}
+body.light .tech-tag {
+  background-color: rgba(9, 9, 11, 0.03) !important;
+  border-color: rgba(9, 9, 11, 0.08) !important;
+  color: #3f3f46 !important;
+}
+body.light .tech-tag:hover {
+  background-color: #ffffff !important;
+  border-color: rgba(9, 9, 11, 0.2) !important;
+  color: #09090b !important;
+  box-shadow: 0 4px 12px rgba(9, 9, 11, 0.05);
+}
+
+/* ===== Contact Section Email Pill & Social Buttons ===== */
+.copied-tooltip {
+  transition: opacity 0.2s, transform 0.2s;
+  transform: translate(-50%, 10px);
+  left: 50%;
+}
+.copied-tooltip.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+#btn-copy-email:hover {
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+}
+
+body.light #btn-copy-email {
+  background-color: #f4f4f5 !important;
+  border-color: #d4d4d8 !important;
+  color: #18181b !important;
+}
+body.light #btn-copy-email:hover {
+  background-color: #09090b !important;
+  border-color: #09090b !important;
+  color: #ffffff !important;
+}
+
+body.light .contact-social-btn {
+  background-color: rgba(9, 9, 11, 0.02) !important;
+  border-color: rgba(9, 9, 11, 0.06) !important;
+  color: #52525b !important;
+}
+body.light .contact-social-btn:hover {
+  background-color: #ffffff !important;
+  border-color: rgba(9, 9, 11, 0.2) !important;
+  color: #09090b !important;
+  box-shadow: 0 4px 12px rgba(9, 9, 11, 0.04);
+}
+
+/* ===== Floating Social Media Dock ===== */
+#floating-social-dock.visible-dock,
+#mobile-social-fab-container.visible-dock {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+}
+
+#floating-social-dock a,
+#mobile-social-menu a {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+body.light #floating-social-dock a,
+body.light #mobile-social-menu a {
+  background-color: #ffffff !important;
+  border-color: #e4e4e7 !important;
+  color: #52525b !important;
+}
+body.light #floating-social-dock a:hover,
+body.light #mobile-social-menu a:active {
+  border-color: #a1a1aa !important;
+  color: #09090b !important;
+  box-shadow: 0 4px 12px rgba(9, 9, 11, 0.08);
+}
+
+#mobile-social-menu.expanded {
+  scale: 1 !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: translateY(0) !important;
+}
+
+/* Rotate and animation for FAB toggle */
+#mobile-social-fab-toggle.active {
+  background-color: #18181b !important;
+  color: #ffffff !important;
+}
+body.light #mobile-social-fab-toggle {
+  background-color: #09090b !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(9, 9, 11, 0.1);
+}
+body.light #mobile-social-fab-toggle.active {
+  background-color: #ffffff !important;
+  color: #09090b !important;
+}
+
+/* ===== Gemini Floating Glowing Orbs Backdrop ===== */
+#gemini-orbs-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -10;
+  overflow: hidden;
+}
+
+.gemini-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(130px);
+  pointer-events: none;
+  opacity: 0.08;
+  transition: background-color 0.4s ease, opacity 0.4s ease;
+  animation: drift-glow 25s infinite alternate ease-in-out;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+body.light .gemini-orb {
+  opacity: 0.04;
+}
+
+.orb-blue {
+  width: 45vw;
+  height: 45vw;
+  background-color: #4285f4;
+  top: -10%;
+  left: -15%;
+  animation-duration: 28s;
+}
+.orb-purple {
+  width: 40vw;
+  height: 40vw;
+  background-color: #9b51e0;
+  top: 40%;
+  right: -10%;
+  animation-duration: 22s;
+  animation-delay: -5s;
+}
+.orb-red {
+  width: 35vw;
+  height: 35vw;
+  background-color: #ea4335;
+  bottom: 10%;
+  left: -10%;
+  animation-duration: 32s;
+  animation-delay: -10s;
+}
+.orb-cyan {
+  width: 38vw;
+  height: 38vw;
+  background-color: #00f2fe;
+  bottom: -15%;
+  right: 15%;
+  animation-duration: 26s;
+  animation-delay: -15s;
+}
+
+@keyframes drift-glow {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4vw, -6vh, 0) scale(1.1);
+  }
+  100% {
+    transform: translate3d(-3vw, 5vh, 0) scale(0.95);
+  }
+}
+
+
+
+/* ===== Tech Console Tab Dashboard ===== */
+.console-tab-btn {
+  position: relative;
+  outline: none;
+}
+.console-tab-btn.active {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  background-color: rgba(255, 255, 255, 0.02) !important;
+  color: var(--text-white) !important;
+}
+body.light .console-tab-btn.active {
+  border-color: rgba(9, 9, 11, 0.08) !important;
+  background-color: rgba(9, 9, 11, 0.03) !important;
+  color: #09090b !important;
+}
+
+/* Animation classes for tab change panel fade-in */
+.console-panel-content {
+  animation: console-fade 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+@keyframes console-fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scrollbar styling for console navigation tabs */
+.scrollbar-thin::-webkit-scrollbar {
+  height: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 99px;
+}
+
+/* ===== Custom Tech Tag Glow Accents on Hover ===== */
+.tech-tag {
+  border: 1px solid var(--card-border);
+  background-color: var(--card-bg);
+}
+
+/* Dark Mode brand hover colors */
+.tech-tag.hover-brand-php:hover { border-color: rgba(119, 123, 180, 0.5) !important; box-shadow: 0 0 16px rgba(119, 123, 180, 0.15); color: #777BB4; }
+.tech-tag.hover-brand-js:hover { border-color: rgba(247, 223, 30, 0.5) !important; box-shadow: 0 0 16px rgba(247, 223, 30, 0.15); color: #F7DF1E; }
+.tech-tag.hover-brand-java:hover { border-color: rgba(0, 115, 150, 0.5) !important; box-shadow: 0 0 16px rgba(0, 115, 150, 0.15); color: #007396; }
+.tech-tag.hover-brand-html:hover { border-color: rgba(227, 79, 38, 0.5) !important; box-shadow: 0 0 16px rgba(227, 79, 38, 0.15); color: #E34F26; }
+.tech-tag.hover-brand-css:hover { border-color: rgba(21, 114, 182, 0.5) !important; box-shadow: 0 0 16px rgba(21, 114, 182, 0.15); color: #1572B6; }
+.tech-tag.hover-brand-laravel:hover { border-color: rgba(255, 45, 32, 0.5) !important; box-shadow: 0 0 16px rgba(255, 45, 32, 0.15); color: #FF2D20; }
+.tech-tag.hover-brand-vue:hover { border-color: rgba(79, 192, 141, 0.5) !important; box-shadow: 0 0 16px rgba(79, 192, 141, 0.15); color: #4FC08D; }
+.tech-tag.hover-brand-flutter:hover { border-color: rgba(2, 86, 155, 0.5) !important; box-shadow: 0 0 16px rgba(2, 86, 155, 0.15); color: #02569B; }
+.tech-tag.hover-brand-tailwind:hover { border-color: rgba(6, 182, 212, 0.5) !important; box-shadow: 0 0 16px rgba(6, 182, 212, 0.15); color: #06B6D4; }
+.tech-tag.hover-brand-bootstrap:hover { border-color: rgba(121, 82, 179, 0.5) !important; box-shadow: 0 0 16px rgba(121, 82, 179, 0.15); color: #7952B3; }
+
+.tech-tag.hover-brand-mysql:hover { border-color: rgba(68, 121, 161, 0.5) !important; box-shadow: 0 0 16px rgba(68, 121, 161, 0.15); color: #4479A1; }
+.tech-tag.hover-brand-postgres:hover { border-color: rgba(65, 105, 225, 0.5) !important; box-shadow: 0 0 16px rgba(65, 105, 225, 0.15); color: #4169E1; }
+.tech-tag.hover-brand-git:hover { border-color: rgba(240, 80, 50, 0.5) !important; box-shadow: 0 0 16px rgba(240, 80, 50, 0.15); color: #F05032; }
+.tech-tag.hover-brand-github:hover { border-color: rgba(255, 255, 255, 0.5) !important; box-shadow: 0 0 16px rgba(255, 255, 255, 0.15); color: #ffffff; }
+.tech-tag.hover-brand-postman:hover { border-color: rgba(255, 108, 55, 0.5) !important; box-shadow: 0 0 16px rgba(255, 108, 55, 0.15); color: #FF6C37; }
+
+.tech-tag.hover-brand-api:hover { border-color: rgba(16, 185, 129, 0.5) !important; box-shadow: 0 0 16px rgba(16, 185, 129, 0.15); color: #10B981; }
+.tech-tag.hover-brand-arch:hover { border-color: rgba(99, 102, 241, 0.5) !important; box-shadow: 0 0 16px rgba(99, 102, 241, 0.15); color: #6366F1; }
+.tech-tag.hover-brand-db:hover { border-color: rgba(6, 182, 212, 0.5) !important; box-shadow: 0 0 16px rgba(6, 182, 212, 0.15); color: #06B6D4; }
+
+/* Light Mode specific brand hover adjustments (darker text for readability) */
+body.light .tech-tag.hover-brand-js:hover { color: #b8970a; }
+body.light .tech-tag.hover-brand-vue:hover { color: #3a9d72; }
+body.light .tech-tag.hover-brand-github:hover { color: #09090b; border-color: rgba(9, 9, 11, 0.5) !important; box-shadow: 0 0 16px rgba(9, 9, 11, 0.1); }
+
+
 

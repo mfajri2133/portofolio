@@ -46,13 +46,13 @@
         <!-- Interactive Mouse Spotlight -->
         <div class="mouse-spotlight"></div>
 
-        <!-- Background Ambient Glowing Orbs -->
-        <div
-            class="orb-glow top-0 left-1/4 w-[35vw] h-[35vw] bg-indigo-500/5"
-        ></div>
-        <div
-            class="orb-glow bottom-1/3 right-1/4 w-[35vw] h-[35vw] bg-emerald-500/5"
-        ></div>
+        <!-- Background Ambient Glowing Orbs (Gemini/Google Accent Spectrum) -->
+        <div id="gemini-orbs-container">
+            <div class="gemini-orb orb-blue"></div>
+            <div class="gemini-orb orb-purple"></div>
+            <div class="gemini-orb orb-red"></div>
+            <div class="gemini-orb orb-cyan"></div>
+        </div>
 
         <!-- Navbar -->
         <nav
@@ -596,12 +596,15 @@
             </section>
 
             <!-- Skills Section -->
-            <section id="skills" class="py-28 px-6 max-w-5xl mx-auto">
-                <div class="space-y-16">
+            <!-- Skills Section -->
+            <section id="skills" class="py-28 px-6 max-w-5xl mx-auto relative overflow-hidden">
+
+
+                <div class="space-y-16 relative z-10">
                     <div class="max-w-xl">
                         <span
                             class="text-xs font-bold tracking-widest text-zinc-500 uppercase font-mono-tech block mb-3"
-                            >// Tools & Tech</span
+                            >// Tech Console</span
                         >
                         <h2
                             class="text-3xl sm:text-4xl font-extrabold text-white"
@@ -612,332 +615,72 @@
                         </h2>
                     </div>
 
-                    <div
-                        class="space-y-12"
+                    <!-- Tech Console Dashboard -->
+                    <div 
+                        class="clean-card rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row gap-8 min-h-[350px] relative overflow-hidden backdrop-blur-md"
                         data-aos="fade-up"
                         data-aos-duration="800"
                     >
-                        <!-- Group 1: Languages & Frameworks -->
-                        <div class="space-y-6">
-                            <h3
-                                class="text-xs font-bold tracking-widest text-zinc-500 uppercase font-mono-tech"
+                        <!-- Left Console Navigation Tabs -->
+                        <div class="flex flex-row md:flex-col gap-2 shrink-0 overflow-x-auto pb-4 md:pb-0 border-b md:border-b-0 md:border-r border-zinc-800/80 pr-0 md:pr-8 min-w-[200px] scrollbar-thin">
+                            <button 
+                                class="console-tab-btn active text-left text-xs font-bold font-mono-tech tracking-wider uppercase px-4 py-3 rounded-xl border border-zinc-800 bg-zinc-950/20 text-zinc-400 hover:text-white transition-all duration-300 w-auto md:w-full shrink-0 cursor-pointer flex items-center gap-2"
+                                data-tab="console-languages"
                             >
-                                // Languages & Frameworks
-                            </h3>
-                            <div
-                                class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"
+                                <span class="tab-indicator">></span> _languages
+                            </button>
+                            <button 
+                                class="console-tab-btn text-left text-xs font-bold font-mono-tech tracking-wider uppercase px-4 py-3 rounded-xl border border-transparent text-zinc-500 hover:text-white transition-all duration-300 w-auto md:w-full shrink-0 cursor-pointer flex items-center gap-2"
+                                data-tab="console-databases"
                             >
-                                <!-- PHP -->
-                                <div
-                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
-                                >
-                                    <div
-                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
-                                    >
-                                        <i
-                                            class="devicon-php-plain text-zinc-400 group-hover:text-[#777BB4] text-2xl transition-colors duration-300"
-                                        ></i>
-                                    </div>
-                                    <span
-                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
-                                        >PHP</span
-                                    >
-                                </div>
-                                <!-- JavaScript -->
-                                <div
-                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
-                                >
-                                    <div
-                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
-                                    >
-                                        <i
-                                            class="devicon-javascript-plain text-zinc-400 group-hover:text-[#F7DF1E] text-2xl transition-colors duration-300"
-                                        ></i>
-                                    </div>
-                                    <span
-                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
-                                        >JavaScript</span
-                                    >
-                                </div>
-                                <!-- Java -->
-                                <div
-                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
-                                >
-                                    <div
-                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
-                                    >
-                                        <i
-                                            class="devicon-java-plain text-zinc-400 group-hover:text-[#007396] text-2xl transition-colors duration-300"
-                                        ></i>
-                                    </div>
-                                    <span
-                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
-                                        >Java</span
-                                    >
-                                </div>
-                                <!-- HTML5 -->
-                                <div
-                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
-                                >
-                                    <div
-                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
-                                    >
-                                        <i
-                                            class="devicon-html5-plain text-zinc-400 group-hover:text-[#E34F26] text-2xl transition-colors duration-300"
-                                        ></i>
-                                    </div>
-                                    <span
-                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
-                                        >HTML5</span
-                                    >
-                                </div>
-                                <!-- CSS3 -->
-                                <div
-                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
-                                >
-                                    <div
-                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
-                                    >
-                                        <i
-                                            class="devicon-css3-plain text-zinc-400 group-hover:text-[#1572B6] text-2xl transition-colors duration-300"
-                                        ></i>
-                                    </div>
-                                    <span
-                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
-                                        >CSS3</span
-                                    >
-                                </div>
-                                <!-- Laravel -->
-                                <div
-                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
-                                >
-                                    <div
-                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
-                                    >
-                                        <i
-                                            class="devicon-laravel-plain text-zinc-400 group-hover:text-[#FF2D20] text-2xl transition-colors duration-300"
-                                        ></i>
-                                    </div>
-                                    <span
-                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
-                                        >Laravel</span
-                                    >
-                                </div>
-                                <!-- Vuejs -->
-                                <div
-                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
-                                >
-                                    <div
-                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
-                                    >
-                                        <i
-                                            class="devicon-vuejs-plain text-zinc-400 group-hover:text-[#4FC08D] text-2xl transition-colors duration-300"
-                                        ></i>
-                                    </div>
-                                    <span
-                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
-                                        >Vue.js</span
-                                    >
-                                </div>
-                                <!-- Flutter -->
-                                <div
-                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
-                                >
-                                    <div
-                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
-                                    >
-                                        <i
-                                            class="devicon-flutter-plain text-zinc-400 group-hover:text-[#02569B] text-2xl transition-colors duration-300"
-                                        ></i>
-                                    </div>
-                                    <span
-                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
-                                        >Flutter</span
-                                    >
-                                </div>
-                                <!-- Tailwind CSS -->
-                                <div
-                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
-                                >
-                                    <div
-                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
-                                    >
-                                        <i
-                                            class="devicon-tailwindcss-plain text-zinc-400 group-hover:text-[#06B6D4] text-2xl transition-colors duration-300"
-                                        ></i>
-                                    </div>
-                                    <span
-                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
-                                        >Tailwind CSS</span
-                                    >
-                                </div>
-                                <!-- Bootstrap -->
-                                <div
-                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
-                                >
-                                    <div
-                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
-                                    >
-                                        <i
-                                            class="devicon-bootstrap-plain text-zinc-400 group-hover:text-[#7952B3] text-2xl transition-colors duration-300"
-                                        ></i>
-                                    </div>
-                                    <span
-                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
-                                        >Bootstrap</span
-                                    >
-                                </div>
-                            </div>
+                                <span class="tab-indicator invisible">></span> _databases
+                            </button>
+                            <button 
+                                class="console-tab-btn text-left text-xs font-bold font-mono-tech tracking-wider uppercase px-4 py-3 rounded-xl border border-transparent text-zinc-500 hover:text-white transition-all duration-300 w-auto md:w-full shrink-0 cursor-pointer flex items-center gap-2"
+                                data-tab="console-concepts"
+                            >
+                                <span class="tab-indicator invisible">></span> _concepts
+                            </button>
                         </div>
 
-                        <!-- Group 2: Databases & Tools -->
-                        <div class="space-y-6">
-                            <h3
-                                class="text-xs font-bold tracking-widest text-zinc-500 uppercase font-mono-tech"
-                            >
-                                // Databases & Tools
-                            </h3>
-                            <div
-                                class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"
-                            >
-                                <!-- MySQL -->
-                                <div
-                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
-                                >
-                                    <div
-                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
-                                    >
-                                        <i
-                                            class="devicon-mysql-plain text-zinc-400 group-hover:text-[#4479A1] text-2xl transition-colors duration-300"
-                                        ></i>
-                                    </div>
-                                    <span
-                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
-                                        >MySQL</span
-                                    >
-                                </div>
-                                <!-- PostgreSQL -->
-                                <div
-                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
-                                >
-                                    <div
-                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
-                                    >
-                                        <i
-                                            class="devicon-postgresql-plain text-zinc-400 group-hover:text-[#4169E1] text-2xl transition-colors duration-300"
-                                        ></i>
-                                    </div>
-                                    <span
-                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
-                                        >PostgreSQL</span
-                                    >
-                                </div>
-                                <!-- Git -->
-                                <div
-                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
-                                >
-                                    <div
-                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
-                                    >
-                                        <i
-                                            class="devicon-git-plain text-zinc-400 group-hover:text-[#F05032] text-2xl transition-colors duration-300"
-                                        ></i>
-                                    </div>
-                                    <span
-                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
-                                        >Git</span
-                                    >
-                                </div>
-                                <!-- GitHub -->
-                                <div
-                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
-                                >
-                                    <div
-                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
-                                    >
-                                        <i
-                                            class="devicon-github-original text-zinc-400 group-hover:text-white text-2xl transition-colors duration-300"
-                                        ></i>
-                                    </div>
-                                    <span
-                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
-                                        >GitHub</span
-                                    >
-                                </div>
-                                <!-- Postman -->
-                                <div
-                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
-                                >
-                                    <div
-                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
-                                    >
-                                        <i
-                                            class="devicon-postman-plain text-zinc-400 group-hover:text-[#FF6C37] text-2xl transition-colors duration-300"
-                                        ></i>
-                                    </div>
-                                    <span
-                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
-                                        >Postman</span
-                                    >
+                        <!-- Right Panel Console Display Content -->
+                        <div class="flex-grow flex items-center">
+                            <!-- Languages & Frameworks Panel -->
+                            <div id="console-languages" class="console-panel-content space-y-6 w-full">
+                                <p class="text-xs font-mono-tech text-zinc-500">// Outputting languages & frameworks stack...</p>
+                                <div class="flex flex-wrap gap-3">
+                                    <span class="tech-tag hover-brand-php text-sm font-semibold px-4 py-2.5 rounded-2xl border border-zinc-800 bg-zinc-950/40 text-zinc-300 transition-all duration-300 cursor-default block">PHP</span>
+                                    <span class="tech-tag hover-brand-js text-sm font-semibold px-4 py-2.5 rounded-2xl border border-zinc-800 bg-zinc-950/40 text-zinc-300 transition-all duration-300 cursor-default block">JavaScript</span>
+                                    <span class="tech-tag hover-brand-java text-sm font-semibold px-4 py-2.5 rounded-2xl border border-zinc-800 bg-zinc-950/40 text-zinc-300 transition-all duration-300 cursor-default block">Java</span>
+                                    <span class="tech-tag hover-brand-html text-sm font-semibold px-4 py-2.5 rounded-2xl border border-zinc-800 bg-zinc-950/40 text-zinc-300 transition-all duration-300 cursor-default block">HTML5</span>
+                                    <span class="tech-tag hover-brand-css text-sm font-semibold px-4 py-2.5 rounded-2xl border border-zinc-800 bg-zinc-950/40 text-zinc-300 transition-all duration-300 cursor-default block">CSS3</span>
+                                    <span class="tech-tag hover-brand-laravel text-sm font-semibold px-4 py-2.5 rounded-2xl border border-zinc-800 bg-zinc-950/40 text-zinc-300 transition-all duration-300 cursor-default block">Laravel</span>
+                                    <span class="tech-tag hover-brand-vue text-sm font-semibold px-4 py-2.5 rounded-2xl border border-zinc-800 bg-zinc-950/40 text-zinc-300 transition-all duration-300 cursor-default block">Vue.js</span>
+                                    <span class="tech-tag hover-brand-flutter text-sm font-semibold px-4 py-2.5 rounded-2xl border border-zinc-800 bg-zinc-950/40 text-zinc-300 transition-all duration-300 cursor-default block">Flutter</span>
+                                    <span class="tech-tag hover-brand-tailwind text-sm font-semibold px-4 py-2.5 rounded-2xl border border-zinc-800 bg-zinc-950/40 text-zinc-300 transition-all duration-300 cursor-default block">Tailwind CSS</span>
+                                    <span class="tech-tag hover-brand-bootstrap text-sm font-semibold px-4 py-2.5 rounded-2xl border border-zinc-800 bg-zinc-950/40 text-zinc-300 transition-all duration-300 cursor-default block">Bootstrap</span>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Group 3: Architecture & Concepts -->
-                        <div class="space-y-6">
-                            <h3
-                                class="text-xs font-bold tracking-widest text-zinc-500 uppercase font-mono-tech"
-                            >
-                                // Architecture & Concepts
-                            </h3>
-                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                                <!-- REST API Design -->
-                                <div
-                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
-                                >
-                                    <div
-                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
-                                    >
-                                        <i
-                                            class="fas fa-network-wired text-zinc-400 group-hover:text-emerald-400 text-xl transition-colors duration-300"
-                                        ></i>
-                                    </div>
-                                    <span
-                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
-                                        >REST API Design</span
-                                    >
+                            <!-- Databases & Tools Panel -->
+                            <div id="console-databases" class="console-panel-content space-y-6 w-full hidden">
+                                <p class="text-xs font-mono-tech text-zinc-500">// Outputting databases & developer tools stack...</p>
+                                <div class="flex flex-wrap gap-3">
+                                    <span class="tech-tag hover-brand-mysql text-sm font-semibold px-4 py-2.5 rounded-2xl border border-zinc-800 bg-zinc-950/40 text-zinc-300 transition-all duration-300 cursor-default block">MySQL</span>
+                                    <span class="tech-tag hover-brand-postgres text-sm font-semibold px-4 py-2.5 rounded-2xl border border-zinc-800 bg-zinc-950/40 text-zinc-300 transition-all duration-300 cursor-default block">PostgreSQL</span>
+                                    <span class="tech-tag hover-brand-git text-sm font-semibold px-4 py-2.5 rounded-2xl border border-zinc-800 bg-zinc-950/40 text-zinc-300 transition-all duration-300 cursor-default block">Git</span>
+                                    <span class="tech-tag hover-brand-github text-sm font-semibold px-4 py-2.5 rounded-2xl border border-zinc-800 bg-zinc-950/40 text-zinc-300 transition-all duration-300 cursor-default block">GitHub</span>
+                                    <span class="tech-tag hover-brand-postman text-sm font-semibold px-4 py-2.5 rounded-2xl border border-zinc-800 bg-zinc-950/40 text-zinc-300 transition-all duration-300 cursor-default block">Postman</span>
                                 </div>
-                                <!-- Software Architecture -->
-                                <div
-                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
-                                >
-                                    <div
-                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
-                                    >
-                                        <i
-                                            class="fas fa-sitemap text-zinc-400 group-hover:text-indigo-400 text-xl transition-colors duration-300"
-                                        ></i>
-                                    </div>
-                                    <span
-                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
-                                        >Software Architecture</span
-                                    >
-                                </div>
-                                <!-- Database Design -->
-                                <div
-                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
-                                >
-                                    <div
-                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
-                                    >
-                                        <i
-                                            class="fas fa-database text-zinc-400 group-hover:text-cyan-400 text-xl transition-colors duration-300"
-                                        ></i>
-                                    </div>
-                                    <span
-                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
-                                        >Database Design</span
-                                    >
+                            </div>
+
+                            <!-- Architecture & Concepts Panel -->
+                            <div id="console-concepts" class="console-panel-content space-y-6 w-full hidden">
+                                <p class="text-xs font-mono-tech text-zinc-500">// Outputting architecture & paradigms stack...</p>
+                                <div class="flex flex-wrap gap-3">
+                                    <span class="tech-tag hover-brand-api text-sm font-semibold px-4 py-2.5 rounded-2xl border border-zinc-800 bg-zinc-950/40 text-zinc-300 transition-all duration-300 cursor-default block">REST API Design</span>
+                                    <span class="tech-tag hover-brand-arch text-sm font-semibold px-4 py-2.5 rounded-2xl border border-zinc-800 bg-zinc-950/40 text-zinc-300 transition-all duration-300 cursor-default block">Software Architecture</span>
+                                    <span class="tech-tag hover-brand-db text-sm font-semibold px-4 py-2.5 rounded-2xl border border-zinc-800 bg-zinc-950/40 text-zinc-300 transition-all duration-300 cursor-default block">Database Design</span>
                                 </div>
                             </div>
                         </div>
@@ -1525,143 +1268,98 @@
                     </div>
                 </div>
             </section>
-
             <!-- Contact Section -->
-            <section id="contact" class="py-28 px-6 max-w-xl mx-auto">
-                <div class="space-y-12">
-                    <div class="text-center space-y-3">
+            <section id="contact" class="py-28 px-6 max-w-2xl mx-auto contact-section relative">
+                <div class="space-y-10 text-center relative z-10">
+                    <div class="space-y-4">
                         <span
                             class="text-xs font-bold tracking-widest text-zinc-500 uppercase font-mono-tech block"
-                            >// Drop a Line</span
+                            >// Get in Touch</span
                         >
                         <h2
-                            class="text-3xl sm:text-4xl font-extrabold text-white"
+                            class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-2 leading-tight"
                             data-aos="fade-up"
                             data-aos-duration="800"
                         >
-                            Get In Touch
+                            Let's Build<br/>
+                            <span class="bg-gradient-to-r from-blue-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">What's Next.</span>
                         </h2>
                         <p
-                            class="text-zinc-500 text-sm sm:text-base leading-relaxed max-w-md mx-auto"
+                            class="text-zinc-500 text-base sm:text-lg leading-relaxed max-w-lg mx-auto"
+                            data-aos="fade-up"
+                            data-aos-duration="800"
+                            data-aos-delay="100"
                         >
-                            Have a question, collaboration request, or just want
-                            to chat about tech? Let me know!
+                            Whether you're looking to build a high-performance web app, need a developer who can bridge the gap from database to UI, or just want to talk tech—let's grab a virtual coffee.
                         </p>
                     </div>
 
-                    <!-- Clean Card Panel -->
-                    <div
-                        class="clean-card rounded-2xl p-8 shadow-xl relative overflow-hidden"
+                    <!-- Email Pill Row -->
+                    <div 
+                        class="inline-flex items-center gap-3 bg-zinc-900/60 border border-zinc-800 rounded-full p-2 pl-6 pr-2 shadow-sm hover:border-zinc-700 transition-all duration-300 max-w-full"
                         data-aos="zoom-in"
                         data-aos-duration="800"
+                        data-aos-delay="200"
                     >
-                        <form
-                            onsubmit="return false;"
-                            id="formEmail"
-                            class="space-y-6"
+                        <span class="text-zinc-300 font-medium text-sm sm:text-base select-all overflow-hidden text-ellipsis whitespace-nowrap">spag.959@gmail.com</span>
+                        <button 
+                            id="btn-copy-email"
+                            class="relative flex items-center justify-center px-4 py-2 bg-zinc-800 text-zinc-300 border border-zinc-700 hover:bg-zinc-100 hover:text-zinc-950 hover:border-zinc-100 rounded-full font-bold text-xs sm:text-sm cursor-pointer transition-all duration-300 shrink-0"
+                            data-email="spag.959@gmail.com"
                         >
-                            <!-- Completion Message Alert -->
-                            <div
-                                id="completionMessageContainer"
-                                class="p-3 rounded-lg bg-red-950/10 border border-red-900/20 text-red-400 text-xs font-mono flex items-center gap-2"
-                            >
-                                <svg
-                                    class="h-4 w-4 flex-shrink-0"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                                    ></path>
-                                </svg>
-                                <span id="completionMessage"
-                                    >Complete all fields with valid data to
-                                    unlock submit button.</span
-                                >
-                            </div>
+                            <span>Copy</span>
+                            <span class="copied-tooltip opacity-0 pointer-events-none absolute -top-10 bg-zinc-100 text-zinc-950 text-[10px] font-bold px-2 py-1 rounded shadow-md transition-opacity after:content-[''] after:absolute after:top-full after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-t-zinc-100">Copied!</span>
+                        </button>
+                    </div>
 
-                            <!-- Name Input -->
-                            <div class="space-y-1.5">
-                                <label
-                                    for="senderName"
-                                    class="text-[11px] font-bold tracking-wider text-zinc-500 uppercase block font-mono-tech"
-                                    >Name</label
-                                >
-                                <input
-                                    type="text"
-                                    class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-zinc-100 placeholder-zinc-700 focus:outline-none focus:border-zinc-500 transition-colors font-sans"
-                                    id="senderName"
-                                    placeholder="Muhamad Fajri"
-                                    name="name"
-                                    required
-                                />
-                            </div>
-
-                            <!-- Email Input -->
-                            <div class="space-y-1.5">
-                                <label
-                                    for="senderEmail"
-                                    class="text-[11px] font-bold tracking-wider text-zinc-500 uppercase block font-mono-tech"
-                                    >Email</label
-                                >
-                                <input
-                                    type="email"
-                                    class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-zinc-100 placeholder-zinc-700 focus:outline-none focus:border-zinc-500 transition-colors font-sans"
-                                    id="senderEmail"
-                                    placeholder="fajri@example.com"
-                                    name="email"
-                                    required
-                                />
-                            </div>
-
-                            <!-- Subject Input -->
-                            <div class="space-y-1.5">
-                                <label
-                                    for="titleMsg"
-                                    class="text-[11px] font-bold tracking-wider text-zinc-500 uppercase block font-mono-tech"
-                                    >Subject</label
-                                >
-                                <input
-                                    type="text"
-                                    class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-zinc-100 placeholder-zinc-700 focus:outline-none focus:border-zinc-500 transition-colors font-sans"
-                                    id="titleMsg"
-                                    placeholder="Project Collaboration"
-                                />
-                            </div>
-
-                            <!-- Message TextArea -->
-                            <div class="space-y-1.5">
-                                <label
-                                    for="msg"
-                                    class="text-[11px] font-bold tracking-wider text-zinc-500 uppercase block font-mono-tech"
-                                    >Message</label
-                                >
-                                <textarea
-                                    class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-zinc-100 placeholder-zinc-700 focus:outline-none focus:border-zinc-500 transition-colors font-sans"
-                                    id="msg"
-                                    rows="5"
-                                    placeholder="Tell me about your project..."
-                                ></textarea>
-                            </div>
-
-                            <!-- Submit Button -->
-                            <button
-                                type="submit"
-                                class="w-full py-3.5 bg-zinc-900 text-zinc-500 border border-zinc-800 rounded-lg font-medium text-sm transition-colors hover:bg-zinc-100 hover:text-zinc-950 hover:border-zinc-100 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-not-allowed"
-                                id="submitButton"
-                                onclick="sendEmail()"
-                                disabled
-                            >
-                                Send Message <span class="text-xs">→</span>
-                            </button>
-                        </form>
+                    <!-- Social CTAs -->
+                    <div 
+                        class="flex justify-center items-center gap-4 flex-wrap"
+                        id="contact-social-links"
+                        data-aos="fade-up"
+                        data-aos-duration="800"
+                        data-aos-delay="300"
+                    >
+                        <!-- GitHub -->
+                        <a 
+                            href="https://github.com/mfajri2133" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="contact-social-btn flex items-center gap-2 px-5 py-2.5 bg-zinc-900/40 border border-zinc-800 rounded-full text-zinc-400 hover:text-white hover:border-zinc-600 font-bold text-sm transition-all duration-300"
+                        >
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <!-- LinkedIn -->
+                        <a 
+                            href="https://www.linkedin.com/in/mhmadfajri" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="contact-social-btn flex items-center gap-2 px-5 py-2.5 bg-zinc-900/40 border border-zinc-800 rounded-full text-zinc-400 hover:text-white hover:border-zinc-600 font-bold text-sm transition-all duration-300"
+                        >
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </a>
+                        <!-- Instagram -->
+                        <a 
+                            href="https://www.instagram.com/mhmadffajri" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="contact-social-btn flex items-center gap-2 px-5 py-2.5 bg-zinc-900/40 border border-zinc-800 rounded-full text-zinc-400 hover:text-white hover:border-zinc-600 font-bold text-sm transition-all duration-300"
+                        >
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                        <!-- WhatsApp -->
+                        <a 
+                            href="https://wa.me/6282211596326" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="contact-social-btn flex items-center gap-2 px-5 py-2.5 bg-zinc-900/40 border border-zinc-800 rounded-full text-zinc-400 hover:text-white hover:border-zinc-600 font-bold text-sm transition-all duration-300"
+                        >
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
                     </div>
                 </div>
             </section>
+
         </main>
 
         <!-- Footer -->
@@ -1733,6 +1431,112 @@
                 delay: 50,
             });
         </script>
+
+        <!-- Floating Social Media Dock -->
+        <div id="floating-social-dock" class="fixed bottom-6 right-6 z-40 hidden sm:flex flex-col items-center gap-3 transition-all duration-500 translate-y-12 opacity-0 pointer-events-none">
+            <!-- GitHub -->
+            <a 
+                href="https://github.com/mfajri2133" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="w-11 h-11 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:border-zinc-500 shadow-lg hover:scale-110 hover:-translate-y-0.5 transition-all duration-300 relative group"
+                aria-label="GitHub"
+            >
+                <i class="fab fa-github text-lg"></i>
+                <span class="absolute right-14 scale-0 group-hover:scale-100 bg-zinc-950 text-zinc-100 text-[10px] font-bold px-2.5 py-1.5 rounded-lg border border-zinc-800 shadow-md transition-all duration-200 origin-right whitespace-nowrap">GitHub</span>
+            </a>
+            <!-- LinkedIn -->
+            <a 
+                href="https://www.linkedin.com/in/mhmadfajri" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="w-11 h-11 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:border-zinc-500 shadow-lg hover:scale-110 hover:-translate-y-0.5 transition-all duration-300 relative group"
+                aria-label="LinkedIn"
+            >
+                <i class="fab fa-linkedin text-lg"></i>
+                <span class="absolute right-14 scale-0 group-hover:scale-100 bg-zinc-950 text-zinc-100 text-[10px] font-bold px-2.5 py-1.5 rounded-lg border border-zinc-800 shadow-md transition-all duration-200 origin-right whitespace-nowrap">LinkedIn</span>
+            </a>
+            <!-- Instagram -->
+            <a 
+                href="https://www.instagram.com/mhmadffajri" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="w-11 h-11 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:border-zinc-500 shadow-lg hover:scale-110 hover:-translate-y-0.5 transition-all duration-300 relative group"
+                aria-label="Instagram"
+            >
+                <i class="fab fa-instagram text-lg"></i>
+                <span class="absolute right-14 scale-0 group-hover:scale-100 bg-zinc-950 text-zinc-100 text-[10px] font-bold px-2.5 py-1.5 rounded-lg border border-zinc-800 shadow-md transition-all duration-200 origin-right whitespace-nowrap">Instagram</span>
+            </a>
+            <!-- WhatsApp -->
+            <a 
+                href="https://wa.me/6282211596326" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="w-11 h-11 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:border-zinc-500 shadow-lg hover:scale-110 hover:-translate-y-0.5 transition-all duration-300 relative group"
+                aria-label="WhatsApp"
+            >
+                <i class="fab fa-whatsapp text-lg"></i>
+                <span class="absolute right-14 scale-0 group-hover:scale-100 bg-zinc-950 text-zinc-100 text-[10px] font-bold px-2.5 py-1.5 rounded-lg border border-zinc-800 shadow-md transition-all duration-200 origin-right whitespace-nowrap">WhatsApp</span>
+            </a>
+        </div>
+
+        <!-- Mobile Floating Social FAB Menu -->
+        <div id="mobile-social-fab-container" class="fixed bottom-6 right-6 z-40 flex sm:hidden flex-col items-end gap-3 transition-all duration-300 translate-y-12 opacity-0 pointer-events-none">
+            <!-- Expandable Menu -->
+            <div id="mobile-social-menu" class="flex flex-col gap-3 scale-0 origin-bottom opacity-0 pointer-events-none transition-all duration-300 translate-y-2">
+                <!-- GitHub -->
+                <a 
+                    href="https://github.com/mfajri2133" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 active:text-white active:border-zinc-500 shadow-md"
+                >
+                    <i class="fab fa-github"></i>
+                </a>
+                <!-- LinkedIn -->
+                <a 
+                    href="https://www.linkedin.com/in/mhmadfajri" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 active:text-white active:border-zinc-500 shadow-md"
+                >
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <!-- Instagram -->
+                <a 
+                    href="https://www.instagram.com/mhmadffajri" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 active:text-white active:border-zinc-500 shadow-md"
+                >
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <!-- WhatsApp -->
+                <a 
+                    href="https://wa.me/6282211596326" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 active:text-white active:border-zinc-500 shadow-md"
+                >
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+            <!-- Main Toggle Button -->
+            <button 
+                id="mobile-social-fab-toggle"
+                class="w-12 h-12 rounded-full bg-white text-zinc-950 flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 relative z-50 cursor-pointer"
+                aria-label="Toggle Social Links"
+            >
+                <!-- Share Icon -->
+                <svg id="mobile-social-share-icon" class="w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935-2.186 2.25 2.25 0 00-3.935 2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z"></path>
+                </svg>
+                <!-- Close Icon (X) -->
+                <svg id="mobile-social-close-icon" class="w-5 h-5 hidden transition-transform duration-300 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
 
         <!-- External JS Logic -->
         <script src="js/script.js"></script>
