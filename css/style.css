@@ -1,292 +1,498 @@
-/* Font Style */
-.jost {
-     font-family: "Jost", sans-serif;
+/* Clean & Elegant Theme Stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+  /* Default Dark Mode Custom Properties */
+  --bg-color: #09090b;
+  --text-color: #a1a1aa;
+  --text-white: #ffffff;
+  --card-bg: rgba(18, 18, 22, 0.4);
+  --card-border: rgba(255, 255, 255, 0.04);
+  --card-hover-bg: rgba(24, 24, 27, 0.75);
+  --card-hover-border: rgba(255, 255, 255, 0.09);
+  --nav-bg: rgba(9, 9, 11, 0.8);
+  --nav-border: rgba(255, 255, 255, 0.06);
+  --grid-line: rgba(255, 255, 255, 0.015);
+  --scrollbar-track: #09090b;
+  --scrollbar-thumb: #27272a;
+  --scrollbar-thumb-hover: #3f3f46;
+  --btn-sec-color: #f4f4f5;
+  --btn-sec-border: rgba(255, 255, 255, 0.08);
+  --btn-sec-hover-bg: rgba(255, 255, 255, 0.03);
+  --btn-sec-hover-border: rgba(255, 255, 255, 0.15);
+  --pill-primary-bg: #ffffff;
+  --pill-primary-color: #09090b;
+  --pill-primary-hover-bg: #e4e4e7;
+  --spotlight-color-1: rgba(99, 102, 241, 0.055);
+  --spotlight-color-2: rgba(16, 185, 129, 0.015);
 }
 
-.spacemono {
-     font-family: "Space Mono", monospace;
+/* Light Mode Overrides */
+body.light {
+  --bg-color: #f4f4f5; /* zinc-100 */
+  --text-color: #3f3f46; /* zinc-700 */
+  --text-white: #09090b; /* zinc-950 */
+  --card-bg: rgba(255, 255, 255, 0.6);
+  --card-border: rgba(9, 9, 11, 0.06);
+  --card-hover-bg: rgba(255, 255, 255, 0.9);
+  --card-hover-border: rgba(9, 9, 11, 0.12);
+  --nav-bg: rgba(244, 244, 245, 0.85);
+  --nav-border: rgba(9, 9, 11, 0.06);
+  --grid-line: rgba(9, 9, 11, 0.025);
+  --scrollbar-track: #f4f4f5;
+  --scrollbar-thumb: #d4d4d8;
+  --scrollbar-thumb-hover: #a1a1aa;
+  --btn-sec-color: #18181b;
+  --btn-sec-border: rgba(9, 9, 11, 0.1);
+  --btn-sec-hover-bg: rgba(9, 9, 11, 0.04);
+  --btn-sec-hover-border: rgba(9, 9, 11, 0.18);
+  --pill-primary-bg: #09090b;
+  --pill-primary-color: #ffffff;
+  --pill-primary-hover-bg: #18181b;
+  --spotlight-color-1: rgba(99, 102, 241, 0.03);
+  --spotlight-color-2: rgba(16, 185, 129, 0.005);
 }
 
-/* style */
 html {
-     scroll-behavior: smooth;
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
 }
 
-body::-webkit-scrollbar {
-     display: none;
+/* Custom Scrollbar - Sleek & Thin */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
 
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Body Reset */
 body {
-     overflow-x: hidden;
-     font-family: "Jost", sans-serif;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+  letter-spacing: -0.01em;
+  transition: background-color 0.4s ease, color 0.3s ease;
 }
 
-a {
-     text-decoration: none;
+/* Typography Helpers */
+.font-mono-tech {
+  font-family: 'Space Mono', monospace;
 }
 
-nav span {
-     color: #007bff;
+/* Faint Background Pixel-Grid */
+.bg-grid-overlay {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
 }
 
-.navbar-custom {
-     background-color: #181a1b;
+/* Elegant Radial Blur Orbs */
+.orb-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: -10;
+  opacity: 0.45;
 }
 
-.navbar-custom .navbar-nav .nav-link {
-     color: rgba(255, 255, 255, 0.7);
+/* Pulsing Status Dot */
+@keyframes pulseDot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.8;
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
 }
 
-.font-grey {
-     color: rgba(255, 255, 255, 0.7);
+.pulse-indicator {
+  animation: pulseDot 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-.navbar-nav .nav-item .nav-link {
-     transition: color 0.3s ease-in-out;
+/* Clean Card Architecture */
+.clean-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.navbar-nav .nav-item .nav-link.active,
-.navbar-nav .nav-item .nav-link:hover {
-     color: #007bff;
+.clean-card:hover {
+  background: var(--card-hover-bg);
+  border-color: var(--card-hover-border);
+  transform: translateY(-3px);
 }
 
-.hero {
-     align-items: center;
-     display: flex;
-     flex-direction: column;
-     gap: 2.5rem;
-     justify-content: center;
-     min-height: 100vh;
-     padding: 0 2rem;
-     position: relative;
+/* Navigation scroll styles */
+nav.scrolled {
+  background: var(--nav-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--nav-border);
+  height: 70px !important;
 }
 
-.hero .hero-img {
-     background-image: url(../img/prism.png);
-     inset: 0;
-     position: absolute;
-     z-index: -1;
+/* Button Pills */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  letter-spacing: -0.01em;
 }
 
-.hero .title {
-     color: #fff;
-     font-size: 4rem;
+.btn-pill-primary {
+  background: var(--pill-primary-bg);
+  color: var(--pill-primary-color);
 }
 
-.hero h1 {
-     text-shadow: 0 4px 10px black;
+.btn-pill-primary:hover {
+  background: var(--pill-primary-hover-bg);
+  transform: translateY(-1px);
 }
 
-.hero .desc {
-     color: #fff;
+.btn-pill-secondary {
+  background: transparent;
+  color: var(--btn-sec-color);
+  border: 1px solid var(--btn-sec-border);
 }
 
-.about {
-     min-height: auto;
-     padding: 5rem 1.5rem;
-     position: relative;
+.btn-pill-secondary:hover {
+  background: var(--btn-sec-hover-bg);
+  border-color: var(--btn-sec-hover-border);
+  transform: translateY(-1px);
 }
 
-.about .hero-img {
-     background-color: #242424;
-     background-position: 50%;
-     background-repeat: no-repeat;
-     background-size: cover;
-     inset: 0;
-     position: absolute;
-     z-index: -1;
+/* Custom typing cursor */
+.typed-cursor {
+  color: var(--text-color);
+  opacity: 1;
+  animation: cursorBlink 0.8s infinite;
 }
 
-.about .title {
-     color: #fff;
-     font-size: 3rem;
-     margin: 0;
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
-.about .desc {
-     color: #fff;
-     text-align: justify;
+/* Interactive Mouse Spotlight */
+.mouse-spotlight {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1; /* Behind text but above grid overlay */
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh),
+    var(--spotlight-color-1),
+    var(--spotlight-color-2) 30%,
+    transparent 80%
+  );
+  transition: opacity 0.5s ease;
 }
 
-.about img {
-     width: 350px;
-     height: 350px;
-     object-fit: cover;
+/* Hide spotlight on touch screens where mousemove is not active */
+@media (hover: none) {
+  .mouse-spotlight {
+    display: none;
+  }
 }
 
-.skill {
-     height: fit-content;
-     padding: 5rem 1.5rem;
-     position: relative;
+/* ===== Light Mode: Direct Body & Global Overrides ===== */
+
+/* Force body background and text in light mode — overrides Tailwind's bg-darkbg */
+body.light,
+body.light.bg-darkbg {
+  background-color: #f4f4f5 !important;
+  color: #52525b !important;
 }
 
-.skill .title {
-     color: #fff;
-     font-size: 3rem;
-     margin: 0;
+
+/* ===== Tailwind Utilities Overrides for Light Mode ===== */
+
+body.light .text-white {
+  color: #09090b !important;
 }
 
-.skill .hero-img {
-     background-color: #181a1b;
-     background-position: 50%;
-     background-repeat: no-repeat;
-     background-size: cover;
-     inset: 0;
-     position: absolute;
-     z-index: -1;
+body.light .text-zinc-100 {
+  color: #18181b !important;
 }
 
-.skill .card-img-top {
-     max-height: 150px;
-     object-fit: cover;
+body.light .text-zinc-200 {
+  color: #27272a !important;
 }
 
-.skill .card-body {
-     text-align: center;
+body.light .text-zinc-300 {
+  color: #3f3f46 !important;
 }
 
-.skill .card-title {
-     margin-top: 10px;
-     font-size: 18px;
-     font-weight: bold;
+body.light .text-zinc-400 {
+  color: #52525b !important;
 }
 
-.skill .card:hover .card-body h5 {
-     color: #007bff;
+body.light .text-zinc-500 {
+  color: #71717a !important;
 }
 
-.skill .custom-card {
-     max-width: 100%;
-     height: auto;
+body.light .bg-zinc-950 {
+  background-color: #ffffff !important;
 }
 
-.owl-theme .owl-dots .owl-dot.active span {
-     background-color: #007bff;
+body.light .bg-zinc-900 {
+  background-color: #f4f4f5 !important;
 }
 
-.projects {
-     min-height: auto;
-     padding: 5rem 1.5rem;
-     position: relative;
+body.light .bg-darkbg {
+  background-color: #f4f4f5 !important;
 }
 
-.projects .hero-img {
-     background-color: #242424;
-     background-position: 50%;
-     background-repeat: no-repeat;
-     background-size: cover;
-     inset: 0;
-     position: absolute;
-     z-index: -1;
+body.light .bg-zinc-800 {
+  background-color: #e4e4e7 !important;
 }
 
-.projects .title {
-     color: #fff;
-     font-size: 3rem;
-     margin: 0;
+body.light .border-zinc-800 {
+  border-color: #e4e4e7 !important;
 }
 
-.contact {
-     min-height: auto;
-     padding: 5rem 1.5rem 8rem;
-     position: relative;
+body.light .border-zinc-700 {
+  border-color: #d4d4d8 !important;
 }
 
-.contact .hero-img {
-     background-color: #181a1b;
-     background-position: 50%;
-     background-repeat: no-repeat;
-     background-size: cover;
-     inset: 0;
-     position: absolute;
-     z-index: -1;
+body.light .border-zinc-900 {
+  border-color: #e4e4e7 !important;
 }
 
-.contact .title {
-     color: #fff;
-     font-size: 3rem;
-     margin: 0;
+body.light .bg-zinc-950\/40 {
+  background-color: rgba(255, 255, 255, 0.7) !important;
 }
 
-.contact .container {
-     color: #fff;
-     max-width: 500px;
+body.light .bg-zinc-950\/10 {
+  background-color: rgba(255, 255, 255, 0.5) !important;
 }
 
-.contact .container form p {
-     color: red;
-     font-size: 0.9rem;
-     margin-bottom: 0;
+body.light .bg-zinc-900\/50 {
+  background-color: rgba(244, 244, 245, 0.7) !important;
 }
 
-.contact .container button {
-     background-color: #007bff;
-     color: #fff;
-     border: #fff;
+/* Badge chips in light mode */
+body.light .bg-zinc-800\/40 {
+  background-color: rgba(228, 228, 231, 0.8) !important;
 }
 
-footer {
-     background-color: #181a1b;
+body.light .bg-zinc-800\/50 {
+  background-color: rgba(228, 228, 231, 0.9) !important;
 }
 
-footer a {
-     color: white;
+body.light .bg-zinc-800\/60 {
+  background-color: rgba(212, 212, 216, 0.8) !important;
 }
 
-footer a:hover {
-     color: #007bff;
+/* Progress bar track */
+body.light .bg-zinc-800 {
+  background-color: #e4e4e7 !important;
 }
 
-/* Style pada mobile */
-@media screen and (max-width: 640px) {
-     .hero .title {
-          font-size: 2.5rem;
-     }
-
-     .about img {
-          width: 100%;
-          height: auto;
-     }
-
-     .about .container .row .pt-5 {
-          padding-top: 0 !important;
-     }
-
-     .skill .custom-card {
-          display: flex;
-          flex-direction: row-reverse;
-          align-items: center;
-     }
-
-     .skill .card-img-top {
-          max-width: 40%;
-     }
-
-     .skill .card .card-body h5 {
-          font-size: 1rem;
-          width: 100%;
-     }
-
-     .skill .card-body {
-          flex-grow: 1;
-     }
-
-     .projects .custom-carousel {
-          height: 100% !important;
-          width: 100% !important;
-     }
-
-     .contact .container form p {
-          color: red;
-          font-size: 0.7rem;
-          margin-bottom: 0;
-     }
+/* Hover states for text and bg in light mode */
+body.light .hover\:text-white:hover {
+  color: #09090b !important;
 }
 
-/* Style pada tablet */
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-     .projects .custom-carousel {
-          height: 100% !important;
-          width: 100% !important;
-     }
+body.light .hover\:bg-zinc-800\/50:hover {
+  background-color: rgba(228, 228, 231, 0.7) !important;
 }
+
+/* Theme toggle button border in light mode */
+body.light .border-zinc-800 {
+  border-color: #d4d4d8 !important;
+}
+
+/* Tag/pill in project cards */
+body.light .text-indigo-400 {
+  color: #4f46e5 !important;
+}
+
+body.light .text-emerald-400 {
+  color: #059669 !important;
+}
+
+/* Selection highlight */
+body.light ::selection {
+  background-color: #d4d4d8;
+  color: #09090b;
+}
+
+/* Light Mode Input Elements Overrides */
+body.light input, 
+body.light textarea {
+  background-color: #ffffff !important;
+  border-color: #e4e4e7 !important;
+  color: #09090b !important;
+}
+
+body.light input::placeholder, 
+body.light textarea::placeholder {
+  color: #a1a1aa !important;
+}
+
+body.light input:focus, 
+body.light textarea:focus {
+  border-color: #71717a !important;
+}
+
+/* Light Mode Form Verification Overrides */
+body.light #completionMessageContainer {
+  background-color: rgba(239, 68, 68, 0.05) !important;
+  border-color: rgba(239, 68, 68, 0.15) !important;
+  color: #dc2626 !important;
+}
+
+/* Mobile Drawer Overlay overrides in Light Mode */
+body.light #mobile-menu {
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  border-color: #e4e4e7 !important;
+}
+
+/* Nav scrolled state in light mode */
+body.light nav.scrolled {
+  background: rgba(244, 244, 245, 0.92) !important;
+  border-color: rgba(9, 9, 11, 0.06) !important;
+}
+
+/* Project card image overlay text in light mode */
+body.light .text-zinc-600 {
+  color: #71717a !important;
+}
+
+/* Clean card in light mode */
+body.light .clean-card {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border-color: rgba(9, 9, 11, 0.06) !important;
+}
+
+body.light .clean-card:hover {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(9, 9, 11, 0.12) !important;
+}
+
+/* ===== Skill/Tech Card Icon Box — Light Mode ===== */
+
+/* Icon wrapper box (bg-zinc-950) inside skill/tech cards should be light */
+body.light .clean-card .bg-zinc-950 {
+  background-color: #f4f4f5 !important;
+  border-color: #d4d4d8 !important;
+}
+
+/* On hover, the icon box border becomes slightly darker */
+body.light .clean-card:hover .bg-zinc-950 {
+  background-color: #ffffff !important;
+  border-color: #a1a1aa !important;
+}
+
+/* Skill label: Tailwind group-hover uses .group:hover selector pattern */
+body.light .group:hover .group-hover\:text-zinc-100 {
+  color: #18181b !important;
+}
+
+/* GitHub icon hover: white becomes dark in light mode */
+body.light .group:hover .group-hover\:text-white {
+  color: #09090b !important;
+}
+
+/* Skill icon default color in light mode */
+body.light .clean-card .text-zinc-400 {
+  color: #71717a !important;
+}
+
+/* ===== Brand hover colors — restore each tech icon color on hover in Light Mode =====
+   Our global body.light .text-zinc-400 { !important } blocks Tailwind's group-hover
+   arbitrary values, so we explicitly override each brand color here.              */
+
+/* PHP — purple */
+body.light .group:hover .group-hover\:text-\[\#777BB4\] { color: #777BB4 !important; }
+
+/* JavaScript — yellow is too light on white; darken slightly */
+body.light .group:hover .group-hover\:text-\[\#F7DF1E\] { color: #b8970a !important; }
+
+/* Java — teal */
+body.light .group:hover .group-hover\:text-\[\#007396\] { color: #007396 !important; }
+
+/* HTML5 — orange-red */
+body.light .group:hover .group-hover\:text-\[\#E34F26\] { color: #E34F26 !important; }
+
+/* CSS3 — blue */
+body.light .group:hover .group-hover\:text-\[\#1572B6\] { color: #1572B6 !important; }
+
+/* Laravel — red */
+body.light .group:hover .group-hover\:text-\[\#FF2D20\] { color: #FF2D20 !important; }
+
+/* Vue.js — green */
+body.light .group:hover .group-hover\:text-\[\#4FC08D\] { color: #3a9d72 !important; }
+
+/* Flutter — dark blue */
+body.light .group:hover .group-hover\:text-\[\#02569B\] { color: #02569B !important; }
+
+/* Tailwind CSS — cyan */
+body.light .group:hover .group-hover\:text-\[\#06B6D4\] { color: #0891b2 !important; }
+
+/* Bootstrap — purple */
+body.light .group:hover .group-hover\:text-\[\#7952B3\] { color: #7952B3 !important; }
+
+/* MySQL — blue */
+body.light .group:hover .group-hover\:text-\[\#4479A1\] { color: #4479A1 !important; }
+
+/* PostgreSQL — blue */
+body.light .group:hover .group-hover\:text-\[\#4169E1\] { color: #4169E1 !important; }
+
+/* Git — orange-red */
+body.light .group:hover .group-hover\:text-\[\#F05032\] { color: #F05032 !important; }
+
+/* Postman — orange */
+body.light .group:hover .group-hover\:text-\[\#FF6C37\] { color: #FF6C37 !important; }
+
+/* Networking — emerald */
+body.light .group:hover .group-hover\:text-emerald-400 { color: #059669 !important; }
+
+/* Architecture — indigo */
+body.light .group:hover .group-hover\:text-indigo-400 { color: #4f46e5 !important; }
+
+/* Database — cyan */
+body.light .group:hover .group-hover\:text-cyan-400 { color: #0891b2 !important; }
+
+/* ===== Available for Work Badge — Light Mode ===== */
+
+/* Badge container: bg-zinc-900/60 is too dark in light mode */
+body.light .bg-zinc-900\/60 {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-color: #d4d4d8 !important;
+}
+
+/* Badge text "Available for Work": text-zinc-300 blends into light bg */
+body.light .bg-zinc-900\/60 .text-zinc-300,
+body.light .text-zinc-300 {
+  color: #3f3f46 !important;
+}
+
+/* Also override bg-zinc-800/80 for badge border variant */
+body.light .border-zinc-800\/80 {
+  border-color: #d4d4d8 !important;
+}
+

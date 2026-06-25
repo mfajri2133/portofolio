@@ -1,5 +1,0 @@
-prism - https://www.toptal.com/designers/subtlepatterns/prism/
-PHP - https://www.logo.wine/logo/PHP
-Vue - https://www.logo.wine/logo/Vue.js
-Laravel - https://www.logo.wine/logo/Laravel
-Tailwind, Javascript, Bootstrap - https://icons8.com/

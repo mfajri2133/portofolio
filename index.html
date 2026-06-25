@@ -1,559 +1,1740 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-     <head>
-          <meta charset="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <title>FWeb | Portfolio</title>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Muhamad Fajri | Software Developer</title>
 
-          <!-- Owl Carousel -->
-          <link
-               rel="stylesheet"
-               href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-          />
-          <link
-               rel="stylesheet"
-               href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
-          />
+        <!-- Tailwind CSS CDN -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            darkbg: "#09090b",
+                            darkcard: "#121216",
+                        },
+                        fontFamily: {
+                            sans: ["Inter", "sans-serif"],
+                            mono: ["Space Mono", "monospace"],
+                        },
+                    },
+                },
+            };
+        </script>
 
-          <!-- Bootstrap -->
-          <link
-               href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-               rel="stylesheet"
-               integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-               crossorigin="anonymous"
-          />
+        <!-- Devicon CDN -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+        />
 
-          <!-- AOS -->
-          <link
-               href="https://unpkg.com/aos@2.3.1/dist/aos.css"
-               rel="stylesheet"
-          />
+        <!-- Custom External CSS -->
+        <link rel="stylesheet" href="css/style.css" />
 
-          <!-- Goggle Font -->
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-          <link
-               href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
-               rel="stylesheet"
-          />
+        <!-- AOS (Animate On Scroll) -->
+        <link
+            href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+            rel="stylesheet"
+        />
+    </head>
 
-          <link rel="stylesheet" href="css/style.css" />
-     </head>
+    <body
+        class="bg-darkbg text-zinc-400 selection:bg-zinc-800 selection:text-white bg-grid-overlay relative min-h-screen"
+    >
+        <!-- Interactive Mouse Spotlight -->
+        <div class="mouse-spotlight"></div>
 
-     <body>
-          <!-- Navbar -->
-          <nav
-               id="navbar-scroll"
-               class="navbar navbar-expand-lg navbar-dark navbar-custom poppins px-3 spacemono fixed-top shadow"
-          >
-               <div class="container-fluid">
-                    <a class="navbar-brand fw-bold fs-2" href="#home"
-                         ><span>F</span>Web</a
+        <!-- Background Ambient Glowing Orbs -->
+        <div
+            class="orb-glow top-0 left-1/4 w-[35vw] h-[35vw] bg-indigo-500/5"
+        ></div>
+        <div
+            class="orb-glow bottom-1/3 right-1/4 w-[35vw] h-[35vw] bg-emerald-500/5"
+        ></div>
+
+        <!-- Navbar -->
+        <nav
+            class="fixed top-0 left-0 w-full z-50 transition-all duration-300 h-24 flex items-center bg-transparent border-b border-transparent"
+        >
+            <div
+                class="max-w-6xl mx-auto w-full px-6 flex items-center justify-between"
+            >
+                <div class="flex-shrink-0">
+                    <a
+                        class="font-sans text-lg font-bold tracking-tight text-white hover:opacity-90 transition-opacity"
+                        href="#home"
                     >
+                        FWeb
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <div
+                        class="flex items-center space-x-6 text-sm font-medium"
+                    >
+                        <a
+                            class="text-zinc-400 hover:text-white transition-colors duration-200"
+                            href="#home"
+                            >Home</a
+                        >
+                        <a
+                            class="text-zinc-400 hover:text-white transition-colors duration-200"
+                            href="#about"
+                            >About</a
+                        >
+                        <a
+                            class="text-zinc-400 hover:text-white transition-colors duration-200"
+                            href="#journey"
+                            >Journey</a
+                        >
+                        <a
+                            class="text-zinc-400 hover:text-white transition-colors duration-200"
+                            href="#skills"
+                            >Skills</a
+                        >
+                        <a
+                            class="text-zinc-400 hover:text-white transition-colors duration-200"
+                            href="#projects"
+                            >Projects</a
+                        >
+                    </div>
                     <button
-                         class="navbar-toggler"
-                         type="button"
-                         data-bs-toggle="collapse"
-                         data-bs-target="#navbarNavDropdown"
-                         aria-controls="navbarNavDropdown"
-                         aria-expanded="false"
-                         aria-label="Toggle navigation"
+                        id="theme-toggle-btn"
+                        class="p-2.5 rounded-full border border-zinc-800 text-zinc-400 hover:text-white flex items-center justify-center cursor-pointer transition-colors"
+                        aria-label="Toggle Theme"
                     >
-                         <span class="navbar-toggler-icon"></span>
+                        <!-- Sun Icon -->
+                        <svg
+                            class="w-4 h-4 hidden theme-sun-icon"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M12 3v2.25m0 13.5V21M4.93 4.93l1.59 1.59m10.96 10.96l1.59 1.59M3 12h2.25m13.5 0H21M5.75 18.25l1.59-1.59m10.96-10.96l1.59-1.59M12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9z"
+                            ></path>
+                        </svg>
+                        <!-- Moon Icon -->
+                        <svg
+                            class="w-4 h-4 theme-moon-icon"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+                            ></path>
+                        </svg>
                     </button>
+                    <a
+                        href="#contact"
+                        class="btn-pill btn-pill-primary text-xs px-4 py-2 hover:scale-[1.02]"
+                        >Collaborate ✦</a
+                    >
+                </div>
+
+                <!-- Mobile Menu Trigger & Theme Toggle -->
+                <div class="md:hidden flex items-center space-x-3">
+                    <button
+                        id="theme-toggle-btn-mobile"
+                        class="p-2.5 rounded-full border border-zinc-800 text-zinc-400 hover:text-white flex items-center justify-center cursor-pointer transition-colors"
+                        aria-label="Toggle Theme"
+                    >
+                        <!-- Sun Icon -->
+                        <svg
+                            class="w-4 h-4 hidden theme-sun-icon"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M12 3v2.25m0 13.5V21M4.93 4.93l1.59 1.59m10.96 10.96l1.59 1.59M3 12h2.25m13.5 0H21M5.75 18.25l1.59-1.59m10.96-10.96l1.59-1.59M12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9z"
+                            ></path>
+                        </svg>
+                        <!-- Moon Icon -->
+                        <svg
+                            class="w-4 h-4 theme-moon-icon"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+                            ></path>
+                        </svg>
+                    </button>
+                    <button
+                        id="mobile-menu-btn"
+                        type="button"
+                        class="inline-flex items-center justify-center p-2 rounded-md text-zinc-400 hover:text-white focus:outline-none transition-colors"
+                        aria-expanded="false"
+                    >
+                        <span class="sr-only">Open menu</span>
+                        <svg
+                            id="hamburger-icon"
+                            class="block h-5 w-5"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1.8"
+                                d="M4 6h16M4 12h16M4 18h16"
+                            />
+                        </svg>
+                        <svg
+                            id="close-icon"
+                            class="hidden h-5 w-5"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1.8"
+                                d="M6 18L18 6M6 6l12 12"
+                            />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Dropdown Menu -->
+            <div
+                id="mobile-menu"
+                class="hidden md:hidden absolute top-full left-0 w-full border-t border-zinc-900 bg-zinc-950/95 backdrop-blur-lg"
+            >
+                <div
+                    class="px-6 py-6 space-y-4 text-center text-base font-medium"
+                >
+                    <a
+                        class="block text-zinc-400 hover:text-white transition-colors py-2"
+                        href="#home"
+                        >Home</a
+                    >
+                    <a
+                        class="block text-zinc-400 hover:text-white transition-colors py-2"
+                        href="#about"
+                        >About</a
+                    >
+                    <a
+                        class="block text-zinc-400 hover:text-white transition-colors py-2"
+                        href="#journey"
+                        >Journey</a
+                    >
+                    <a
+                        class="block text-zinc-400 hover:text-white transition-colors py-2"
+                        href="#skills"
+                        >Skills</a
+                    >
+                    <a
+                        class="block text-zinc-400 hover:text-white transition-colors py-2"
+                        href="#projects"
+                        >Projects</a
+                    >
+                    <div class="pt-4">
+                        <a
+                            href="#contact"
+                            class="btn-pill btn-pill-primary w-full py-2.5 text-sm"
+                            >Collaborate ✦</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Layout Container -->
+        <main>
+            <!-- Hero Section -->
+            <section
+                id="home"
+                class="min-h-screen flex flex-col justify-center items-center px-6 relative overflow-hidden"
+            >
+                <div
+                    class="text-center max-w-3xl z-10 flex flex-col items-center"
+                    data-aos="fade-down"
+                    data-aos-duration="1000"
+                >
+                    <!-- Pulsing Status Badge -->
                     <div
-                         class="collapse navbar-collapse text-center"
-                         id="navbarNavDropdown"
+                        class="inline-flex items-center gap-2 bg-zinc-900/60 border border-zinc-800/80 rounded-full px-3 py-1.5 mb-8 shadow-sm"
                     >
-                         <ul class="navbar-nav ms-auto">
-                              <li class="nav-item">
-                                   <a
-                                        class="nav-link active"
-                                        aria-current="page"
-                                        href="#home"
-                                        >Home</a
-                                   >
-                              </li>
-
-                              <li class="nav-item">
-                                   <a class="nav-link" href="#about">About</a>
-                              </li>
-
-                              <li class="nav-item">
-                                   <a class="nav-link" href="#skills">Skills</a>
-                              </li>
-
-                              <li class="nav-item">
-                                   <a class="nav-link" href="#projects"
-                                        >Projects</a
-                                   >
-                              </li>
-
-                              <li class="nav-item">
-                                   <a class="nav-link" href="#contact"
-                                        >Contact</a
-                                   >
-                              </li>
-                         </ul>
+                        <span
+                            class="w-2 h-2 rounded-full bg-emerald-500 block pulse-indicator"
+                        ></span>
+                        <span
+                            class="text-[11px] font-medium text-zinc-300 tracking-wide font-mono-tech"
+                            >Available for Work</span
+                        >
                     </div>
-               </div>
-          </nav>
 
-          <div data-bs-spy="scroll" data-bs-target="#navbar-scroll">
-               <section id="home" class="hero">
-                    <div class="hero-img"></div>
-
-                    <h1 class="title spacemono fw-bold">Hey, I'm Fajri!</h1>
-                    <div class="desc jost fs-4">
-                         I am an informatics engineering student at Pasundan
-                         University, and I am from Purwakarta.
-                    </div>
-               </section>
-
-               <section id="about" class="about">
-                    <div class="hero-img"></div>
-                    <h2
-                         class="title spacemono text-center fw-bold"
-                         data-aos="fade-up"
-                         data-aos-duration="1000"
+                    <h1
+                        class="text-5xl sm:text-7xl font-extrabold tracking-tight text-white mb-6"
                     >
-                         About me
-                    </h2>
+                        Muhamad Fajri
+                    </h1>
+
+                    <!-- Typing Subtitle -->
                     <div
-                         class="container pt-5"
-                         data-aos="fade-up"
-                         data-aos-duration="1000"
+                        class="text-lg sm:text-2xl text-zinc-400 font-normal h-10 flex items-center justify-center mb-6"
                     >
-                         <div class="row">
-                              <div class="col-auto pt-5">
-                                   <img
-                                        class="img-fluid rounded"
-                                        src="img/self.jpg"
-                                   />
-                              </div>
-
-                              <div
-                                   class="col desc jost fs-6 align-self-center pt-4"
-                              >
-                                   <h3 class="spacemono fw-semibold">
-                                        Get to know me!
-                                   </h3>
-                                   Hello! My name is Muhamad Fajri, an
-                                   Informatics Engineering student who is
-                                   passionate about exploring the world of
-                                   technology. I believe that technology can be
-                                   a positive force in shaping the future, and
-                                   that's why I chose to pursue a degree in this
-                                   field.
-                                   <br /><br />
-                                   My experience in creating websites has
-                                   enriched my learning journey. I have been
-                                   involved in several web development projects,
-                                   ranging from personal websites to
-                                   collaborative projects with teams. My
-                                   expertise includes using HTML, CSS, and
-                                   JavaScript to create responsive and engaging
-                                   interfaces.
-                                   <br /><br />
-                                   Thank you for visiting my profile. If you are
-                                   interested in collaborating or sharing your
-                                   experience, please feel free to contact me. I
-                                   am always open to new opportunities and the
-                                   chance to keep growing in the world of
-                                   technology.
-                              </div>
-                         </div>
+                        <span
+                            id="typed-text"
+                            class="font-medium text-zinc-200"
+                        ></span>
                     </div>
-               </section>
 
-               <section id="skills" class="skill">
-                    <div class="hero-img"></div>
-                    <h2
-                         class="title spacemono text-center fw-bold"
-                         data-aos="fade-up"
-                         data-aos-duration="1000"
+                    <p
+                        class="text-sm sm:text-base text-zinc-500 max-w-lg leading-relaxed mb-10"
                     >
-                         My skills
-                    </h2>
+                        Informatics Engineering student at Universitas Pasundan
+                        with experience delivering web and mobile applications
+                        for government institutions, organizations, and private
+                        clients.
+                    </p>
+
+                    <div class="flex gap-4">
+                        <a
+                            href="#projects"
+                            class="btn-pill btn-pill-primary text-sm px-6 py-3 font-semibold shadow-sm"
+                            >View Work</a
+                        >
+                        <a
+                            href="#contact"
+                            class="btn-pill btn-pill-secondary text-sm px-6 py-3 font-semibold"
+                            >Contact</a
+                        >
+                    </div>
+                </div>
+
+                <!-- Minimalist Scroll indicator -->
+                <div
+                    class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50"
+                >
+                    <span
+                        class="text-[9px] font-bold tracking-[0.2em] text-zinc-500"
+                        >SCROLL</span
+                    >
                     <div
-                         class="container pt-5"
-                         data-aos="fade-up"
-                         data-aos-duration="1000"
-                    >
-                         <div class="owl-carousel owl-theme">
-                              <a href="https://www.javascript.com/">
-                                   <div class="card custom-card">
-                                        <img
-                                             src="img/Javascript.jpg"
-                                             class="card-img-top"
-                                        />
-                                        <div class="card-body">
-                                             <h5 class="card-title">
-                                                  Javascript
-                                             </h5>
-                                        </div>
-                                   </div>
-                              </a>
+                        class="w-[1px] h-8 bg-gradient-to-b from-zinc-500 to-transparent"
+                    ></div>
+                </div>
+            </section>
 
-                              <a href="https://tailwindcss.com/">
-                                   <div class="card custom-card">
-                                        <img
-                                             src="img/Tailwind.jpg"
-                                             class="card-img-top"
-                                        />
-                                        <div class="card-body">
-                                             <h5 class="card-title">
-                                                  Tailwind
-                                             </h5>
-                                        </div>
-                                   </div>
-                              </a>
-
-                              <a href="https://getbootstrap.com/">
-                                   <div class="card custom-card">
-                                        <img
-                                             src="img/Bootstrap.jpg"
-                                             class="card-img-top"
-                                        />
-                                        <div class="card-body">
-                                             <h5 class="card-title">
-                                                  Bootstrap
-                                             </h5>
-                                        </div>
-                                   </div>
-                              </a>
-
-                              <a href="https://laravel.com/">
-                                   <div class="card custom-card">
-                                        <img
-                                             src="img/Laravel.jpg"
-                                             class="card-img-top"
-                                        />
-                                        <div class="card-body">
-                                             <h5 class="card-title">Laravel</h5>
-                                        </div>
-                                   </div>
-                              </a>
-
-                              <a href="https://vuejs.org/">
-                                   <div class="card custom-card">
-                                        <img
-                                             src="img/Vue.jpg"
-                                             class="card-img-top"
-                                        />
-                                        <div class="card-body">
-                                             <h5 class="card-title">Vue.js</h5>
-                                        </div>
-                                   </div>
-                              </a>
-
-                              <a href="https://www.php.net/">
-                                   <div class="card custom-card">
-                                        <img
-                                             src="img/PHP.jpg"
-                                             class="card-img-top"
-                                        />
-                                        <div class="card-body">
-                                             <h5 class="card-title">PHP</h5>
-                                        </div>
-                                   </div>
-                              </a>
-                         </div>
+            <!-- About Section -->
+            <section id="about" class="py-28 px-6 max-w-5xl mx-auto">
+                <div class="space-y-16">
+                    <div class="max-w-xl">
+                        <span
+                            class="text-xs font-bold tracking-widest text-zinc-500 uppercase font-mono-tech block mb-3"
+                            >// The Story</span
+                        >
+                        <h2
+                            class="text-3xl sm:text-4xl font-extrabold text-white"
+                            data-aos="fade-up"
+                            data-aos-duration="800"
+                        >
+                            About Me
+                        </h2>
                     </div>
-               </section>
-
-               <section id="projects" class="projects">
-                    <div class="hero-img"></div>
-                    <h2
-                         class="title spacemono text-center fw-bold pb-5"
-                         data-aos="fade-up"
-                         data-aos-duration="1000"
-                    >
-                         Projects
-                    </h2>
 
                     <div
-                         class="container"
-                         data-aos="fade-up"
-                         data-aos-duration="1000"
+                        class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center"
                     >
-                         <div
-                              class="row gx-4 gy-4 d-flex justify-content-center"
-                         >
-                              <div class="col-12 col-md-4 col-lg-4">
-                                   <div class="card">
-                                        <img
-                                             src="img/oatdaily-page.png"
-                                             class="card-img-top"
-                                             alt="Oat Daily"
-                                        />
-                                        <div class="card-body">
-                                             <h5 class="card-title fw-bold">
-                                                  Oat Daily
-                                             </h5>
-                                             <div class="text-end">
-                                                  <a
-                                                       href="https://oatdaily.com/"
-                                                       class="btn btn-outline-primary"
-                                                       >Visit Page</a
-                                                  >
-                                             </div>
-                                        </div>
-                                   </div>
-                              </div>
-                              <div class="col-12 col-md-4 col-lg-4">
-                                   <div class="card">
-                                        <img
-                                             src="img/dhiyamotor-page.png"
-                                             class="card-img-top"
-                                             alt="Oat Daily"
-                                        />
-                                        <div class="card-body">
-                                             <h5 class="card-title fw-bold">
-                                                  Dhiya Motor 67
-                                             </h5>
-                                             <div class="text-end">
-                                                  <a
-                                                       href="https://mfajri2133.github.io/itw2023_project2_233040105/"
-                                                       class="btn btn-outline-primary"
-                                                       >Visit Page</a
-                                                  >
-                                             </div>
-                                        </div>
-                                   </div>
-                              </div>
-                              <div class="col-12 col-md-4 col-lg-4">
-                                   <div class="card">
-                                        <img
-                                             src="img/antarasuara-page.png"
-                                             class="card-img-top"
-                                             alt="Antara Suara"
-                                        />
-                                        <div class="card-body">
-                                             <h5 class="card-title fw-bold">
-                                                  Antara Suara
-                                             </h5>
-                                             <div class="text-end">
-                                                  <a
-                                                       href="https://antarasuara.com/"
-                                                       class="btn btn-outline-primary"
-                                                       >Visit Page</a
-                                                  >
-                                             </div>
-                                        </div>
-                                   </div>
-                              </div>
-                              <div class="col-12 col-md-4 col-lg-4">
-                                   <div class="card">
-                                        <img
-                                             src="img/ftc-page.png"
-                                             class="card-img-top"
-                                             alt="Fuel Terminal Cikampek"
-                                        />
-                                        <div class="card-body">
-                                             <h5 class="card-title fw-bold">
-                                                  Fuel Terminal Cikampek
-                                             </h5>
-                                             <div class="text-end">
-                                                  <a
-                                                       href="https://apps-cikampek.com/"
-                                                       class="btn btn-outline-primary"
-                                                       >Visit Page</a
-                                                  >
-                                             </div>
-                                        </div>
-                                   </div>
-                              </div>
-                              <div class="col-12 col-md-4 col-lg-4">
-                                   <div class="card">
-                                        <img
-                                             src="img/rijj-page.png"
-                                             class="card-img-top"
-                                             alt="RIJJ Dishub Purwakarta"
-                                        />
-                                        <div class="card-body">
-                                             <h5 class="card-title fw-bold">
-                                                  RIJJ Dishub Purwakarta
-                                             </h5>
-                                             <div class="text-end">
-                                                  <a
-                                                       href="https://simanja.dishub.purwakartakab.go.id/auth/login"
-                                                       class="btn btn-outline-primary"
-                                                       >Visit Page</a
-                                                  >
-                                             </div>
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
-                    </div>
-               </section>
+                        <!-- Image Profile -->
+                        <div
+                            class="md:col-span-5 flex justify-center md:justify-start"
+                            data-aos="fade-right"
+                            data-aos-duration="800"
+                        >
+                            <div
+                                class="rounded-2xl max-w-xs overflow-hidden border border-zinc-800 shadow-xl bg-zinc-950 p-2"
+                            >
+                                <img
+                                    class="img-fluid w-full aspect-square object-cover rounded-xl grayscale hover:grayscale-0 transition-all duration-500"
+                                    src="img/self.webp"
+                                    alt="Muhamad Fajri"
+                                />
+                            </div>
+                        </div>
 
-               <section id="contact" class="contact">
-                    <div class="hero-img"></div>
-                    <h2
-                         class="title spacemono text-center fw-bold"
-                         data-aos="fade-up"
-                         data-aos-duration="1000"
-                    >
-                         Contact me
-                    </h2>
+                        <!-- Info Text -->
+                        <div
+                            class="md:col-span-7 space-y-6 text-zinc-400 text-justify leading-relaxed text-sm sm:text-base"
+                            data-aos="fade-left"
+                            data-aos-duration="800"
+                        >
+                            <p>
+                                Hello! My name is
+                                <span class="text-white font-semibold"
+                                    >Muhamad Fajri</span
+                                >, an Informatics Engineering student at
+                                Universitas Pasundan, Bandung. I have solid
+                                experience in architecting and delivering both
+                                web and mobile applications for government
+                                institutions, organizational ecosystems, and
+                                private clients.
+                            </p>
+                            <p>
+                                I operate as a Fullstack Developer, specializing
+                                in
+                                <span class="text-white font-semibold"
+                                    >Laravel, Vue.js, Flutter, MySQL, and
+                                    PostgreSQL</span
+                                >. My technical practice encompasses
+                                microservices backend design, building
+                                centralized API gateways, RESTful API
+                                development, and responsive user interfaces.
+                            </p>
+                            <p>
+                                Driven by code quality and system performance, I
+                                focus on building production-ready digital
+                                solutions that are stable, highly available, and
+                                scalable. I am always open to new professional
+                                collaborations and technical challenges.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Journey Section -->
+            <section id="journey" class="py-28 px-6 max-w-5xl mx-auto">
+                <div class="space-y-16">
+                    <div class="max-w-xl">
+                        <span
+                            class="text-xs font-bold tracking-widest text-zinc-500 uppercase font-mono-tech block mb-3"
+                            >// The Progression</span
+                        >
+                        <h2
+                            class="text-3xl sm:text-4xl font-extrabold text-white"
+                            data-aos="fade-up"
+                            data-aos-duration="800"
+                        >
+                            My Journey
+                        </h2>
+                    </div>
+
+                    <!-- Vertical Timeline -->
                     <div
-                         class="container pt-5"
-                         data-aos="fade-up"
-                         data-aos-duration="1000"
+                        class="relative border-l border-zinc-800 ml-4 md:ml-6 space-y-12"
+                        data-aos="fade-up"
+                        data-aos-duration="800"
                     >
-                         <form onsubmit="return false;" id="formEmail">
-                              <div class="mb-3">
-                                   <p id="completionMessage">
-                                        *Lengkapi Form Agar Bisa Mengirim Pesan
-                                        !!
-                                   </p>
-                                   <label for="senderName" class="form-label"
-                                        >Name</label
-                                   >
-                                   <input
-                                        type="text"
-                                        class="form-control spacemono"
-                                        id="senderName"
-                                        placeholder="John Doe"
-                                        name="name"
-                                        required
-                                   />
-                              </div>
-                              <div class="mb-3">
-                                   <label for="senderEmail" class="form-label"
-                                        >Email</label
-                                   >
-                                   <input
-                                        type="email"
-                                        class="form-control spacemono"
-                                        id="senderEmail"
-                                        placeholder="jhondoe@example.com"
-                                        name="email"
-                                        required
-                                   />
-                              </div>
-                              <div class="mb-3">
-                                   <label for="titleMsg" class="form-label"
-                                        >Title</label
-                                   >
-                                   <input
-                                        type="text"
-                                        class="form-control spacemono"
-                                        id="titleMsg"
-                                        placeholder="What you're writing about?"
-                                   />
-                              </div>
-                              <div class="mb-3">
-                                   <label for="msg" class="form-label"
-                                        >Message</label
-                                   >
-                                   <textarea
-                                        class="form-control spacemono"
-                                        id="msg"
-                                        rows="6"
-                                        placeholder="Full message comes here..."
-                                   ></textarea>
-                              </div>
-                              <button
-                                   type="submit"
-                                   class="btn spacemono fw-bold"
-                                   id="submitButton"
-                                   onclick="sendEmail()"
-                                   disabled
-                              >
-                                   Submit
-                              </button>
-                         </form>
+                        <!-- Item 1 -->
+                        <div class="relative pl-8 md:pl-10 group">
+                            <!-- Bullet Dot -->
+                            <div
+                                class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-zinc-700 border border-zinc-950 group-hover:bg-white transition-colors duration-300"
+                            ></div>
+                            <div class="space-y-2">
+                                <span
+                                    class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase font-mono-tech"
+                                    >Stage 1: Learning JavaScript</span
+                                >
+                                <h3
+                                    class="text-lg font-bold text-white group-hover:text-zinc-200 transition-colors"
+                                >
+                                    Mastering the Web Core
+                                </h3>
+                                <p
+                                    class="text-sm text-zinc-400 max-w-2xl leading-relaxed"
+                                >
+                                    I began my coding journey by mastering
+                                    JavaScript fundamentals. I focused on
+                                    scripting DOM elements, understanding
+                                    variables, loops, arrays, and standard
+                                    algorithm design to build interactive
+                                    features on static webpages.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="relative pl-8 md:pl-10 group">
+                            <!-- Bullet Dot -->
+                            <div
+                                class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-zinc-700 border border-zinc-950 group-hover:bg-white transition-colors duration-300"
+                            ></div>
+                            <div class="space-y-2">
+                                <span
+                                    class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase font-mono-tech"
+                                    >Stage 2: Frontend Slicing</span
+                                >
+                                <h3
+                                    class="text-lg font-bold text-white group-hover:text-zinc-200 transition-colors"
+                                >
+                                    UI Precision with Vue.js & CSS
+                                </h3>
+                                <p
+                                    class="text-sm text-zinc-400 max-w-2xl leading-relaxed"
+                                >
+                                    I quickly transitioned to building clean
+                                    client interfaces. I learned how to slice
+                                    Figma designs into pixel-perfect frontend
+                                    layouts using Vue.js, styling them with
+                                    Tailwind CSS and Bootstrap to manage
+                                    responsive web components.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="relative pl-8 md:pl-10 group">
+                            <!-- Bullet Dot -->
+                            <div
+                                class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-zinc-700 border border-zinc-950 group-hover:bg-white transition-colors duration-300"
+                            ></div>
+                            <div class="space-y-2">
+                                <span
+                                    class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase font-mono-tech"
+                                    >Stage 3: Deep Backend Study</span
+                                >
+                                <h3
+                                    class="text-lg font-bold text-white group-hover:text-zinc-200 transition-colors"
+                                >
+                                    Server-Side Programming with Laravel
+                                </h3>
+                                <p
+                                    class="text-sm text-zinc-400 max-w-2xl leading-relaxed"
+                                >
+                                    To support complex dashboard actions, I
+                                    turned my attention to the backend. I
+                                    mastered Laravel, deep diving into
+                                    relational databases (MySQL, PostgreSQL),
+                                    developing unified RESTful API
+                                    architectures, and learning server routing.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 4 -->
+                        <div class="relative pl-8 md:pl-10 group">
+                            <!-- Bullet Dot -->
+                            <div
+                                class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-zinc-700 border border-zinc-950 group-hover:bg-white transition-colors duration-300"
+                            ></div>
+                            <div class="space-y-2">
+                                <span
+                                    class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase font-mono-tech"
+                                    >Stage 4: Becoming a Fullstack
+                                    Developer</span
+                                >
+                                <h3
+                                    class="text-lg font-bold text-white group-hover:text-zinc-200 transition-colors"
+                                >
+                                    Integrating End-to-End Enterprise Systems
+                                </h3>
+                                <p
+                                    class="text-sm text-zinc-400 max-w-2xl leading-relaxed"
+                                >
+                                    By connecting Laravel APIs to Vue.js admin
+                                    pages, I became a Fullstack Web Developer. I
+                                    delivered enterprise management systems
+                                    (Fuel Terminal Cikampek), logistics
+                                    schedulers, and geographic tracking
+                                    dashboards for regional government transport
+                                    offices (Dishub Purwakarta).
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 5 -->
+                        <div class="relative pl-8 md:pl-10 group">
+                            <!-- Bullet Dot -->
+                            <div
+                                class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border border-zinc-950 transition-colors duration-300"
+                            ></div>
+                            <div class="space-y-2">
+                                <span
+                                    class="text-[10px] font-bold tracking-widest text-emerald-500 uppercase font-mono-tech flex items-center gap-2"
+                                >
+                                    Stage 5: Mobile App Engineering (Current)
+                                    <span
+                                        class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-ping"
+                                    ></span>
+                                </span>
+                                <h3
+                                    class="text-lg font-bold text-white group-hover:text-zinc-200 transition-colors"
+                                >
+                                    Cross-Platform Native Apps with Flutter
+                                </h3>
+                                <p
+                                    class="text-sm text-zinc-400 max-w-2xl leading-relaxed"
+                                >
+                                    Currently, I am learning Flutter to design
+                                    cross-platform native apps. I've designed
+                                    and synchronized RESTful APIs with
+                                    microservices architectures, supporting
+                                    tracking dashboards (Wasil, SIRKEL) on
+                                    Android and iOS devices.
+                                </p>
+                            </div>
+                        </div>
                     </div>
-               </section>
-          </div>
+                </div>
+            </section>
 
-          <footer class="text-center text-lg-start text-white">
-               <section
-                    class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom container"
-               >
-                    <div class="me-5 d-none d-lg-block">
-                         <span>Get connected with me on social networks:</span>
+            <!-- Skills Section -->
+            <section id="skills" class="py-28 px-6 max-w-5xl mx-auto">
+                <div class="space-y-16">
+                    <div class="max-w-xl">
+                        <span
+                            class="text-xs font-bold tracking-widest text-zinc-500 uppercase font-mono-tech block mb-3"
+                            >// Tools & Tech</span
+                        >
+                        <h2
+                            class="text-3xl sm:text-4xl font-extrabold text-white"
+                            data-aos="fade-up"
+                            data-aos-duration="800"
+                        >
+                            Skills & Capabilities
+                        </h2>
                     </div>
 
-                    <div>
-                         <a
-                              href="https://www.instagram.com/fajri2133"
-                              class="me-4"
-                         >
-                              <i class="fab fa-instagram"></i>
-                         </a>
-                         <a href="https://wa.me/6282211596326" class="me-4">
-                              <i class="fab fa-whatsapp"></i>
-                         </a>
-                         <a
-                              href="https://www.linkedin.com/in/muhamad-fajri-205110298/"
-                              class="me-4"
-                         >
-                              <i class="fab fa-linkedin"></i>
-                         </a>
-                         <a href="https://github.com/mfajri2133">
-                              <i class="fab fa-github"></i>
-                         </a>
+                    <div
+                        class="space-y-12"
+                        data-aos="fade-up"
+                        data-aos-duration="800"
+                    >
+                        <!-- Group 1: Languages & Frameworks -->
+                        <div class="space-y-6">
+                            <h3
+                                class="text-xs font-bold tracking-widest text-zinc-500 uppercase font-mono-tech"
+                            >
+                                // Languages & Frameworks
+                            </h3>
+                            <div
+                                class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"
+                            >
+                                <!-- PHP -->
+                                <div
+                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
+                                >
+                                    <div
+                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
+                                    >
+                                        <i
+                                            class="devicon-php-plain text-zinc-400 group-hover:text-[#777BB4] text-2xl transition-colors duration-300"
+                                        ></i>
+                                    </div>
+                                    <span
+                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
+                                        >PHP</span
+                                    >
+                                </div>
+                                <!-- JavaScript -->
+                                <div
+                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
+                                >
+                                    <div
+                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
+                                    >
+                                        <i
+                                            class="devicon-javascript-plain text-zinc-400 group-hover:text-[#F7DF1E] text-2xl transition-colors duration-300"
+                                        ></i>
+                                    </div>
+                                    <span
+                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
+                                        >JavaScript</span
+                                    >
+                                </div>
+                                <!-- Java -->
+                                <div
+                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
+                                >
+                                    <div
+                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
+                                    >
+                                        <i
+                                            class="devicon-java-plain text-zinc-400 group-hover:text-[#007396] text-2xl transition-colors duration-300"
+                                        ></i>
+                                    </div>
+                                    <span
+                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
+                                        >Java</span
+                                    >
+                                </div>
+                                <!-- HTML5 -->
+                                <div
+                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
+                                >
+                                    <div
+                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
+                                    >
+                                        <i
+                                            class="devicon-html5-plain text-zinc-400 group-hover:text-[#E34F26] text-2xl transition-colors duration-300"
+                                        ></i>
+                                    </div>
+                                    <span
+                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
+                                        >HTML5</span
+                                    >
+                                </div>
+                                <!-- CSS3 -->
+                                <div
+                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
+                                >
+                                    <div
+                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
+                                    >
+                                        <i
+                                            class="devicon-css3-plain text-zinc-400 group-hover:text-[#1572B6] text-2xl transition-colors duration-300"
+                                        ></i>
+                                    </div>
+                                    <span
+                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
+                                        >CSS3</span
+                                    >
+                                </div>
+                                <!-- Laravel -->
+                                <div
+                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
+                                >
+                                    <div
+                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
+                                    >
+                                        <i
+                                            class="devicon-laravel-plain text-zinc-400 group-hover:text-[#FF2D20] text-2xl transition-colors duration-300"
+                                        ></i>
+                                    </div>
+                                    <span
+                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
+                                        >Laravel</span
+                                    >
+                                </div>
+                                <!-- Vuejs -->
+                                <div
+                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
+                                >
+                                    <div
+                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
+                                    >
+                                        <i
+                                            class="devicon-vuejs-plain text-zinc-400 group-hover:text-[#4FC08D] text-2xl transition-colors duration-300"
+                                        ></i>
+                                    </div>
+                                    <span
+                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
+                                        >Vue.js</span
+                                    >
+                                </div>
+                                <!-- Flutter -->
+                                <div
+                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
+                                >
+                                    <div
+                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
+                                    >
+                                        <i
+                                            class="devicon-flutter-plain text-zinc-400 group-hover:text-[#02569B] text-2xl transition-colors duration-300"
+                                        ></i>
+                                    </div>
+                                    <span
+                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
+                                        >Flutter</span
+                                    >
+                                </div>
+                                <!-- Tailwind CSS -->
+                                <div
+                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
+                                >
+                                    <div
+                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
+                                    >
+                                        <i
+                                            class="devicon-tailwindcss-plain text-zinc-400 group-hover:text-[#06B6D4] text-2xl transition-colors duration-300"
+                                        ></i>
+                                    </div>
+                                    <span
+                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
+                                        >Tailwind CSS</span
+                                    >
+                                </div>
+                                <!-- Bootstrap -->
+                                <div
+                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
+                                >
+                                    <div
+                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
+                                    >
+                                        <i
+                                            class="devicon-bootstrap-plain text-zinc-400 group-hover:text-[#7952B3] text-2xl transition-colors duration-300"
+                                        ></i>
+                                    </div>
+                                    <span
+                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
+                                        >Bootstrap</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Group 2: Databases & Tools -->
+                        <div class="space-y-6">
+                            <h3
+                                class="text-xs font-bold tracking-widest text-zinc-500 uppercase font-mono-tech"
+                            >
+                                // Databases & Tools
+                            </h3>
+                            <div
+                                class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"
+                            >
+                                <!-- MySQL -->
+                                <div
+                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
+                                >
+                                    <div
+                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
+                                    >
+                                        <i
+                                            class="devicon-mysql-plain text-zinc-400 group-hover:text-[#4479A1] text-2xl transition-colors duration-300"
+                                        ></i>
+                                    </div>
+                                    <span
+                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
+                                        >MySQL</span
+                                    >
+                                </div>
+                                <!-- PostgreSQL -->
+                                <div
+                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
+                                >
+                                    <div
+                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
+                                    >
+                                        <i
+                                            class="devicon-postgresql-plain text-zinc-400 group-hover:text-[#4169E1] text-2xl transition-colors duration-300"
+                                        ></i>
+                                    </div>
+                                    <span
+                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
+                                        >PostgreSQL</span
+                                    >
+                                </div>
+                                <!-- Git -->
+                                <div
+                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
+                                >
+                                    <div
+                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
+                                    >
+                                        <i
+                                            class="devicon-git-plain text-zinc-400 group-hover:text-[#F05032] text-2xl transition-colors duration-300"
+                                        ></i>
+                                    </div>
+                                    <span
+                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
+                                        >Git</span
+                                    >
+                                </div>
+                                <!-- GitHub -->
+                                <div
+                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
+                                >
+                                    <div
+                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
+                                    >
+                                        <i
+                                            class="devicon-github-original text-zinc-400 group-hover:text-white text-2xl transition-colors duration-300"
+                                        ></i>
+                                    </div>
+                                    <span
+                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
+                                        >GitHub</span
+                                    >
+                                </div>
+                                <!-- Postman -->
+                                <div
+                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
+                                >
+                                    <div
+                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
+                                    >
+                                        <i
+                                            class="devicon-postman-plain text-zinc-400 group-hover:text-[#FF6C37] text-2xl transition-colors duration-300"
+                                        ></i>
+                                    </div>
+                                    <span
+                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
+                                        >Postman</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Group 3: Architecture & Concepts -->
+                        <div class="space-y-6">
+                            <h3
+                                class="text-xs font-bold tracking-widest text-zinc-500 uppercase font-mono-tech"
+                            >
+                                // Architecture & Concepts
+                            </h3>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                                <!-- REST API Design -->
+                                <div
+                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
+                                >
+                                    <div
+                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
+                                    >
+                                        <i
+                                            class="fas fa-network-wired text-zinc-400 group-hover:text-emerald-400 text-xl transition-colors duration-300"
+                                        ></i>
+                                    </div>
+                                    <span
+                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
+                                        >REST API Design</span
+                                    >
+                                </div>
+                                <!-- Software Architecture -->
+                                <div
+                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
+                                >
+                                    <div
+                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
+                                    >
+                                        <i
+                                            class="fas fa-sitemap text-zinc-400 group-hover:text-indigo-400 text-xl transition-colors duration-300"
+                                        ></i>
+                                    </div>
+                                    <span
+                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
+                                        >Software Architecture</span
+                                    >
+                                </div>
+                                <!-- Database Design -->
+                                <div
+                                    class="clean-card rounded-2xl p-5 flex flex-col items-center justify-center group cursor-default"
+                                >
+                                    <div
+                                        class="w-12 h-12 mb-3 bg-zinc-950 flex items-center justify-center border border-zinc-800 rounded-xl group-hover:border-zinc-700 transition-colors"
+                                    >
+                                        <i
+                                            class="fas fa-database text-zinc-400 group-hover:text-cyan-400 text-xl transition-colors duration-300"
+                                        ></i>
+                                    </div>
+                                    <span
+                                        class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-100 transition-colors"
+                                        >Database Design</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
                     </div>
-               </section>
+                </div>
+            </section>
 
-               <div class="text-center p-4">
-                    © 2023 Copyright:
-                    <a class="fw-bold" href="index.html">FWeb</a>
-               </div>
-          </footer>
+            <!-- Projects Section -->
+            <section id="projects" class="py-28 px-6 max-w-5xl mx-auto">
+                <div class="space-y-16">
+                    <div class="max-w-xl">
+                        <span
+                            class="text-xs font-bold tracking-widest text-zinc-500 uppercase font-mono-tech block mb-3"
+                            >// Selected Work</span
+                        >
+                        <h2
+                            class="text-3xl sm:text-4xl font-extrabold text-white"
+                            data-aos="fade-up"
+                            data-aos-duration="800"
+                        >
+                            Featured Projects
+                        </h2>
+                    </div>
 
-          <script
-               src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-               integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-               crossorigin="anonymous"
-          ></script>
-          <!-- Font Awesome -->
-          <script
-               src="https://kit.fontawesome.com/1adc408adc.js"
-               crossorigin="anonymous"
-          ></script>
-          <!-- AOS -->
-          <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-          <script>
-               AOS.init();
-          </script>
+                    <div
+                        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                        data-aos="fade-up"
+                        data-aos-duration="800"
+                    >
+                        <!-- Wasil -->
+                        <div
+                            class="clean-card rounded-2xl overflow-hidden flex flex-col h-full"
+                        >
+                            <div
+                                class="relative overflow-hidden aspect-[16/10] bg-zinc-950 border-b border-zinc-900"
+                            >
+                                <img
+                                    src="img/wasil.webp"
+                                    class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                                    alt="Wasil"
+                                />
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <span
+                                    class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase mb-2 font-mono-tech"
+                                    >Fullstack Developer</span
+                                >
+                                <h3 class="text-lg font-bold text-white mb-2">
+                                    Wasil
+                                </h3>
+                                <p
+                                    class="text-zinc-500 text-sm leading-relaxed mb-6"
+                                >
+                                    Designed a microservices-based backend with
+                                    Laravel, built an interactive Vue.js
+                                    dashboard to manage pilgrim data/schedules,
+                                    and integrated digital Islamic guidance
+                                    features.
+                                </p>
+                                <div
+                                    class="mt-auto pt-4 border-t border-zinc-900/50 flex justify-end"
+                                >
+                                    <a
+                                        href="#"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-sm font-semibold text-zinc-300 hover:text-white transition-colors inline-flex items-center gap-1.5 group/link"
+                                    >
+                                        Project Details
+                                        <span
+                                            class="group-hover/link:translate-x-1 transition-transform"
+                                            >→</span
+                                        >
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
-          <!-- Owl Carousel -->
-          <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-          <script>
-               $(document).ready(function () {
-                    $(".owl-carousel").owlCarousel({
-                         loop: true,
-                         margin: 10,
-                         responsiveClass: true,
-                         responsive: {
-                              0: {
-                                   items: 1,
-                                   nav: false,
-                                   loop: false,
-                                   autoWidth: false,
-                              },
-                              600: {
-                                   items: 3,
-                                   nav: false,
-                                   loop: false,
-                              },
-                              1000: {
-                                   items: 6,
-                                   nav: false,
-                                   loop: false,
-                              },
-                         },
-                    });
-               });
-          </script>
+                        <!-- SIRKEL -->
+                        <div
+                            class="clean-card rounded-2xl overflow-hidden flex flex-col h-full"
+                        >
+                            <div
+                                class="relative overflow-hidden aspect-[16/10] bg-zinc-950 border-b border-zinc-900"
+                            >
+                                <img
+                                    src="img/sirkel.webp"
+                                    class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                                    alt="SIRKEL"
+                                />
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <span
+                                    class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase mb-2 font-mono-tech"
+                                    >Fullstack Developer</span
+                                >
+                                <h3 class="text-lg font-bold text-white mb-2">
+                                    SIRKEL
+                                </h3>
+                                <p
+                                    class="text-zinc-500 text-sm leading-relaxed mb-6"
+                                >
+                                    Designed a robust backend system with
+                                    Laravel managing group creations, event
+                                    scheduling, and real-time location tracking
+                                    integrated into a Flutter mobile
+                                    application.
+                                </p>
+                                <div
+                                    class="mt-auto pt-4 border-t border-zinc-900/50 flex justify-end"
+                                >
+                                    <a
+                                        href="https://play.google.com/store/apps/details?id=com.penacode.sirkel&pcampaignid=web_share"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-sm font-semibold text-zinc-300 hover:text-white transition-colors inline-flex items-center gap-1.5 group/link"
+                                    >
+                                        Project Details
+                                        <span
+                                            class="group-hover/link:translate-x-1 transition-transform"
+                                            >→</span
+                                        >
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
-          <!-- Eksternal JS -->
-          <script src="js/script.js"></script>
-     </body>
+                        <!-- DISEPEDAH by BAPENDA PURWAKARTA -->
+                        <div
+                            class="clean-card rounded-2xl overflow-hidden flex flex-col h-full"
+                        >
+                            <div
+                                class="relative overflow-hidden aspect-[16/10] bg-zinc-950 border-b border-zinc-900"
+                            >
+                                <img
+                                    src="img/disepedah.webp"
+                                    class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                                    alt="DISEPEDAH by BAPENDA PURWAKARTA"
+                                />
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <span
+                                    class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase mb-2 font-mono-tech"
+                                    >Fullstack Developer</span
+                                >
+                                <h3 class="text-lg font-bold text-white mb-2">
+                                    DISEPEDAH
+                                </h3>
+                                <p
+                                    class="text-zinc-500 text-sm leading-relaxed mb-6"
+                                >
+                                    Led the system migration from CodeIgniter to
+                                    Laravel, integrated multiple databases
+                                    (MySQL/PostgreSQL), and built responsive
+                                    Vue.js/Tailwind CSS web administration
+                                    panels.
+                                </p>
+                                <div
+                                    class="mt-auto pt-4 border-t border-zinc-900/50 flex justify-end"
+                                >
+                                    <a
+                                        href="#"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-sm font-semibold text-zinc-300 hover:text-white transition-colors inline-flex items-center gap-1.5 group/link"
+                                    >
+                                        Project Details
+                                        <span
+                                            class="group-hover/link:translate-x-1 transition-transform"
+                                            >→</span
+                                        >
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- KKN PENGMAS ITB -->
+                        <div
+                            class="clean-card rounded-2xl overflow-hidden flex flex-col h-full"
+                        >
+                            <div
+                                class="relative overflow-hidden aspect-[16/10] bg-zinc-950 border-b border-zinc-900"
+                            >
+                                <img
+                                    src="img/itb.webp"
+                                    class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                                    alt="KKN PENGMAS ITB"
+                                />
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <span
+                                    class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase mb-2 font-mono-tech"
+                                    >Fullstack Developer</span
+                                >
+                                <h3 class="text-lg font-bold text-white mb-2">
+                                    KKN PENGMAS ITB
+                                </h3>
+                                <p
+                                    class="text-zinc-500 text-sm leading-relaxed mb-6"
+                                >
+                                    Developed modules for registration, activity
+                                    monitoring, digital document upload systems,
+                                    and centralized portals with Vue.js,
+                                    Laravel, and Tailwind CSS.
+                                </p>
+                                <div
+                                    class="mt-auto pt-4 border-t border-zinc-900/50 flex justify-end"
+                                >
+                                    <a
+                                        href="#"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-sm font-semibold text-zinc-300 hover:text-white transition-colors inline-flex items-center gap-1.5 group/link"
+                                    >
+                                        Project Details
+                                        <span
+                                            class="group-hover/link:translate-x-1 transition-transform"
+                                            >→</span
+                                        >
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DISHUB PURWAKARTA -->
+                        <div
+                            class="clean-card rounded-2xl overflow-hidden flex flex-col h-full"
+                        >
+                            <div
+                                class="relative overflow-hidden aspect-[16/10] bg-zinc-950 border-b border-zinc-900"
+                            >
+                                <img
+                                    src="img/rijj-page.webp"
+                                    class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                                    alt="DISHUB PURWAKARTA"
+                                />
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <span
+                                    class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase mb-2 font-mono-tech"
+                                    >Fullstack Developer</span
+                                >
+                                <h3 class="text-lg font-bold text-white mb-2">
+                                    DISHUB Purwakarta
+                                </h3>
+                                <p
+                                    class="text-zinc-500 text-sm leading-relaxed mb-6"
+                                >
+                                    Developed geospatial digital maps mapping
+                                    traffic sign assets, routing details,
+                                    traffic engineering logs, and interactive
+                                    statistical monitoring dashboard systems.
+                                </p>
+                                <div
+                                    class="mt-auto pt-4 border-t border-zinc-900/50 flex justify-end"
+                                >
+                                    <a
+                                        href="https://simanja.dishub.purwakartakab.go.id/auth/login"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-sm font-semibold text-zinc-300 hover:text-white transition-colors inline-flex items-center gap-1.5 group/link"
+                                    >
+                                        Project Details
+                                        <span
+                                            class="group-hover/link:translate-x-1 transition-transform"
+                                            >→</span
+                                        >
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- E-Pustaka -->
+                        <div
+                            class="clean-card rounded-2xl overflow-hidden flex flex-col h-full"
+                        >
+                            <div
+                                class="relative overflow-hidden aspect-[16/10] bg-zinc-950 border-b border-zinc-900"
+                            >
+                                <img
+                                    src="img/epustaka.webp"
+                                    class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                                    alt="E-Pustaka"
+                                />
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <span
+                                    class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase mb-2 font-mono-tech"
+                                    >Fullstack Developer</span
+                                >
+                                <h3 class="text-lg font-bold text-white mb-2">
+                                    E-Pustaka
+                                </h3>
+                                <p
+                                    class="text-zinc-500 text-sm leading-relaxed mb-6"
+                                >
+                                    Designed a digital library web-based admin
+                                    portal for document categorization alongside
+                                    a Flutter webview-based mobile document
+                                    reader synchronized with Laravel APIs.
+                                </p>
+                                <div
+                                    class="mt-auto pt-4 border-t border-zinc-900/50 flex justify-end"
+                                >
+                                    <a
+                                        href="#"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-sm font-semibold text-zinc-300 hover:text-white transition-colors inline-flex items-center gap-1.5 group/link"
+                                    >
+                                        Project Details
+                                        <span
+                                            class="group-hover/link:translate-x-1 transition-transform"
+                                            >→</span
+                                        >
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- BAPENDA PURWAKARTA -->
+                        <div
+                            class="project-card-extra clean-card rounded-2xl overflow-hidden flex flex-col h-full hidden"
+                        >
+                            <div
+                                class="relative overflow-hidden aspect-[16/10] bg-zinc-950 border-b border-zinc-900"
+                            >
+                                <img
+                                    src="img/bapenda.webp"
+                                    class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                                    alt="BAPENDA Purwakarta"
+                                />
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <span
+                                    class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase mb-2 font-mono-tech"
+                                    >Frontend Developer</span
+                                >
+                                <h3 class="text-lg font-bold text-white mb-2">
+                                    BAPENDA Purwakarta
+                                </h3>
+                                <p
+                                    class="text-zinc-500 text-sm leading-relaxed mb-6"
+                                >
+                                    Redesigned the website with a modern and
+                                    responsive layout. Implemented QR code
+                                    scanning for SPPT verification and payment
+                                    access, improving usability across desktop
+                                    and mobile devices.
+                                </p>
+                                <div
+                                    class="mt-auto pt-4 border-t border-zinc-900/50 flex justify-end"
+                                >
+                                    <a
+                                        href="#"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-sm font-semibold text-zinc-300 hover:text-white transition-colors inline-flex items-center gap-1.5 group/link"
+                                    >
+                                        Project Details
+                                        <span
+                                            class="group-hover/link:translate-x-1 transition-transform"
+                                            >→</span
+                                        >
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fuel Terminal Cikampek -->
+                        <div
+                            class="project-card-extra clean-card rounded-2xl overflow-hidden flex flex-col h-full hidden"
+                        >
+                            <div
+                                class="relative overflow-hidden aspect-[16/10] bg-zinc-950 border-b border-zinc-900"
+                            >
+                                <img
+                                    src="img/ftc-page.webp"
+                                    class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                                    alt="Fuel Terminal Cikampek"
+                                />
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <span
+                                    class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase mb-2 font-mono-tech"
+                                    >Fullstack Developer</span
+                                >
+                                <h3 class="text-lg font-bold text-white mb-2">
+                                    Fuel Terminal Cikampek
+                                </h3>
+                                <p
+                                    class="text-zinc-500 text-sm leading-relaxed mb-6"
+                                >
+                                    Developed employee tracking, visitor logs,
+                                    warehouse stock monitoring, fuel shipment
+                                    dispatching, evaluations, and operational
+                                    dashboard tools.
+                                </p>
+                                <div
+                                    class="mt-auto pt-4 border-t border-zinc-900/50 flex justify-end"
+                                >
+                                    <a
+                                        href="https://apps-cikampek.com/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-sm font-semibold text-zinc-300 hover:text-white transition-colors inline-flex items-center gap-1.5 group/link"
+                                    >
+                                        Project Details
+                                        <span
+                                            class="group-hover/link:translate-x-1 transition-transform"
+                                            >→</span
+                                        >
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Oat Daily -->
+                        <div
+                            class="project-card-extra clean-card rounded-2xl overflow-hidden flex flex-col h-full hidden"
+                        >
+                            <div
+                                class="relative overflow-hidden aspect-[16/10] bg-zinc-950 border-b border-zinc-900"
+                            >
+                                <img
+                                    src="img/oatdaily-page.webp"
+                                    class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                                    alt="Oat Daily"
+                                />
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <span
+                                    class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase mb-2 font-mono-tech"
+                                    >Frontend Developer</span
+                                >
+                                <h3 class="text-lg font-bold text-white mb-2">
+                                    Oat Daily
+                                </h3>
+                                <p
+                                    class="text-zinc-500 text-sm leading-relaxed mb-6"
+                                >
+                                    Interactive marketing site representing
+                                    premium milk products, designed for high
+                                    visual appeal and distribution outreach.
+                                </p>
+                                <div
+                                    class="mt-auto pt-4 border-t border-zinc-900/50 flex justify-end"
+                                >
+                                    <a
+                                        href="https://oatdaily.com/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-sm font-semibold text-zinc-300 hover:text-white transition-colors inline-flex items-center gap-1.5 group/link"
+                                    >
+                                        Project Details
+                                        <span
+                                            class="group-hover/link:translate-x-1 transition-transform"
+                                            >→</span
+                                        >
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dhiya Motor 67 -->
+                        <div
+                            class="project-card-extra clean-card rounded-2xl overflow-hidden flex flex-col h-full hidden"
+                        >
+                            <div
+                                class="relative overflow-hidden aspect-[16/10] bg-zinc-950 border-b border-zinc-900"
+                            >
+                                <img
+                                    src="img/dhiyamotor-page.webp"
+                                    class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                                    alt="Dhiya Motor 67"
+                                />
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <span
+                                    class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase mb-2 font-mono-tech"
+                                    >Frontend Developer</span
+                                >
+                                <h3 class="text-lg font-bold text-white mb-2">
+                                    Dhiya Motor 67
+                                </h3>
+                                <p
+                                    class="text-zinc-500 text-sm leading-relaxed mb-6"
+                                >
+                                    Customer portal presenting motorcycle repair
+                                    workshop services, detailed catalogs, and
+                                    user feedback logs.
+                                </p>
+                                <div
+                                    class="mt-auto pt-4 border-t border-zinc-900/50 flex justify-end"
+                                >
+                                    <a
+                                        href="https://mfajri2133.github.io/itw2023_project2_233040105/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-sm font-semibold text-zinc-300 hover:text-white transition-colors inline-flex items-center gap-1.5 group/link"
+                                    >
+                                        Project Details
+                                        <span
+                                            class="group-hover/link:translate-x-1 transition-transform"
+                                            >→</span
+                                        >
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Antara Suara -->
+                        <div
+                            class="project-card-extra clean-card rounded-2xl overflow-hidden flex flex-col h-full hidden"
+                        >
+                            <div
+                                class="relative overflow-hidden aspect-[16/10] bg-zinc-950 border-b border-zinc-900"
+                            >
+                                <img
+                                    src="img/antarasuara-page.webp"
+                                    class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                                    alt="Antara Suara"
+                                />
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <span
+                                    class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase mb-2 font-mono-tech"
+                                    >Frontend Developer</span
+                                >
+                                <h3 class="text-lg font-bold text-white mb-2">
+                                    Antara Suara
+                                </h3>
+                                <p
+                                    class="text-zinc-500 text-sm leading-relaxed mb-6"
+                                >
+                                    High-performance landing platform and
+                                    booking landing pages built for major
+                                    musical concerts across Indonesia.
+                                </p>
+                                <div
+                                    class="mt-auto pt-4 border-t border-zinc-900/50 flex justify-end"
+                                >
+                                    <a
+                                        href="https://antarasuara.com/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-sm font-semibold text-zinc-300 hover:text-white transition-colors inline-flex items-center gap-1.5 group/link"
+                                    >
+                                        Project Details
+                                        <span
+                                            class="group-hover/link:translate-x-1 transition-transform"
+                                            >→</span
+                                        >
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Toggle Projects Button -->
+                    <div
+                        class="flex justify-center mt-12"
+                        data-aos="fade-up"
+                        data-aos-duration="800"
+                    >
+                        <button
+                            id="btn-toggle-projects"
+                            class="btn-pill btn-pill-secondary text-xs px-6 py-3 hover:scale-[1.02] inline-flex items-center gap-2 cursor-pointer transition-all duration-300"
+                        >
+                            <span>Show More</span>
+                            <svg
+                                class="w-3.5 h-3.5 transition-transform duration-300"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                stroke-width="2.5"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                                ></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="py-28 px-6 max-w-xl mx-auto">
+                <div class="space-y-12">
+                    <div class="text-center space-y-3">
+                        <span
+                            class="text-xs font-bold tracking-widest text-zinc-500 uppercase font-mono-tech block"
+                            >// Drop a Line</span
+                        >
+                        <h2
+                            class="text-3xl sm:text-4xl font-extrabold text-white"
+                            data-aos="fade-up"
+                            data-aos-duration="800"
+                        >
+                            Get In Touch
+                        </h2>
+                        <p
+                            class="text-zinc-500 text-sm sm:text-base leading-relaxed max-w-md mx-auto"
+                        >
+                            Have a question, collaboration request, or just want
+                            to chat about tech? Let me know!
+                        </p>
+                    </div>
+
+                    <!-- Clean Card Panel -->
+                    <div
+                        class="clean-card rounded-2xl p-8 shadow-xl relative overflow-hidden"
+                        data-aos="zoom-in"
+                        data-aos-duration="800"
+                    >
+                        <form
+                            onsubmit="return false;"
+                            id="formEmail"
+                            class="space-y-6"
+                        >
+                            <!-- Completion Message Alert -->
+                            <div
+                                id="completionMessageContainer"
+                                class="p-3 rounded-lg bg-red-950/10 border border-red-900/20 text-red-400 text-xs font-mono flex items-center gap-2"
+                            >
+                                <svg
+                                    class="h-4 w-4 flex-shrink-0"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                                    ></path>
+                                </svg>
+                                <span id="completionMessage"
+                                    >Complete all fields with valid data to
+                                    unlock submit button.</span
+                                >
+                            </div>
+
+                            <!-- Name Input -->
+                            <div class="space-y-1.5">
+                                <label
+                                    for="senderName"
+                                    class="text-[11px] font-bold tracking-wider text-zinc-500 uppercase block font-mono-tech"
+                                    >Name</label
+                                >
+                                <input
+                                    type="text"
+                                    class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-zinc-100 placeholder-zinc-700 focus:outline-none focus:border-zinc-500 transition-colors font-sans"
+                                    id="senderName"
+                                    placeholder="Muhamad Fajri"
+                                    name="name"
+                                    required
+                                />
+                            </div>
+
+                            <!-- Email Input -->
+                            <div class="space-y-1.5">
+                                <label
+                                    for="senderEmail"
+                                    class="text-[11px] font-bold tracking-wider text-zinc-500 uppercase block font-mono-tech"
+                                    >Email</label
+                                >
+                                <input
+                                    type="email"
+                                    class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-zinc-100 placeholder-zinc-700 focus:outline-none focus:border-zinc-500 transition-colors font-sans"
+                                    id="senderEmail"
+                                    placeholder="fajri@example.com"
+                                    name="email"
+                                    required
+                                />
+                            </div>
+
+                            <!-- Subject Input -->
+                            <div class="space-y-1.5">
+                                <label
+                                    for="titleMsg"
+                                    class="text-[11px] font-bold tracking-wider text-zinc-500 uppercase block font-mono-tech"
+                                    >Subject</label
+                                >
+                                <input
+                                    type="text"
+                                    class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-zinc-100 placeholder-zinc-700 focus:outline-none focus:border-zinc-500 transition-colors font-sans"
+                                    id="titleMsg"
+                                    placeholder="Project Collaboration"
+                                />
+                            </div>
+
+                            <!-- Message TextArea -->
+                            <div class="space-y-1.5">
+                                <label
+                                    for="msg"
+                                    class="text-[11px] font-bold tracking-wider text-zinc-500 uppercase block font-mono-tech"
+                                    >Message</label
+                                >
+                                <textarea
+                                    class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-zinc-100 placeholder-zinc-700 focus:outline-none focus:border-zinc-500 transition-colors font-sans"
+                                    id="msg"
+                                    rows="5"
+                                    placeholder="Tell me about your project..."
+                                ></textarea>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button
+                                type="submit"
+                                class="w-full py-3.5 bg-zinc-900 text-zinc-500 border border-zinc-800 rounded-lg font-medium text-sm transition-colors hover:bg-zinc-100 hover:text-zinc-950 hover:border-zinc-100 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-not-allowed"
+                                id="submitButton"
+                                onclick="sendEmail()"
+                                disabled
+                            >
+                                Send Message <span class="text-xs">→</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="border-t border-zinc-900 bg-zinc-950/40 relative z-10">
+            <div
+                class="max-w-5xl mx-auto px-6 py-12 flex flex-col sm:flex-row items-center justify-between gap-6"
+            >
+                <div class="text-zinc-500 text-xs font-mono-tech">
+                    © 2026 Copyright:
+                    <a
+                        class="text-zinc-400 hover:text-white transition-colors"
+                        href="#home"
+                        >FWeb</a
+                    >
+                </div>
+
+                <div class="flex items-center space-x-6">
+                    <a
+                        href="https://www.instagram.com/mhmadffajri"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-zinc-500 hover:text-white text-lg transition-colors"
+                    >
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a
+                        href="https://wa.me/6282211596326"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-zinc-500 hover:text-white text-lg transition-colors"
+                    >
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a
+                        href="https://www.linkedin.com/in/mhmadfajri"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-zinc-500 hover:text-white text-lg transition-colors"
+                    >
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a
+                        href="https://github.com/mfajri2133"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-zinc-500 hover:text-white text-lg transition-colors"
+                    >
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Font Awesome Icons -->
+        <script
+            src="https://kit.fontawesome.com/1adc408adc.js"
+            crossorigin="anonymous"
+        ></script>
+
+        <!-- Typed.js for Typewriter effect -->
+        <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+        <!-- AOS (Animate on Scroll) -->
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                once: true,
+                offset: 100,
+                delay: 50,
+            });
+        </script>
+
+        <!-- External JS Logic -->
+        <script src="js/script.js"></script>
+    </body>
 </html>
