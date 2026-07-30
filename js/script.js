@@ -123,7 +123,7 @@ function sendEmail() {
     var message = form.querySelector("#msg").value;
 
     var emailUrl =
-        "mailto:spag.959@gmail.com" +
+        "mailto:mhmadfajricareer@gmail.com" +
         "?subject=" +
         encodeURIComponent(title) +
         "&body=" +
@@ -288,6 +288,22 @@ if (themeToggleBtn) {
 if (themeToggleBtnMobile) {
     themeToggleBtnMobile.addEventListener("click", toggleTheme);
 }
+
+// 8.5. Print Portfolio to PDF Trigger
+const printPdfBtn = document.getElementById("print-pdf-btn");
+const printPdfBtnMobile = document.getElementById("print-pdf-btn-mobile");
+
+function triggerPrint() {
+    window.print();
+}
+
+if (printPdfBtn) {
+    printPdfBtn.addEventListener("click", triggerPrint);
+}
+if (printPdfBtnMobile) {
+    printPdfBtnMobile.addEventListener("click", triggerPrint);
+}
+
 
 // 9. Floating Social Media Dock & Copy Email
 const btnCopyEmail = document.getElementById("btn-copy-email");

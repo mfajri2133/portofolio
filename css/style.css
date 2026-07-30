@@ -783,5 +783,315 @@ body.light .tech-tag.hover-brand-js:hover { color: #b8970a; }
 body.light .tech-tag.hover-brand-vue:hover { color: #3a9d72; }
 body.light .tech-tag.hover-brand-github:hover { color: #09090b; border-color: rgba(9, 9, 11, 0.5) !important; box-shadow: 0 0 16px rgba(9, 9, 11, 0.1); }
 
+/* ===== PDF Print Stylesheet (A4 Landscape) ===== */
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 0 !important;
+  }
 
+  /* Force exact colors while disabling heavy shadows/blurs to compress PDF size */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  html, body {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* Force colored images (no grayscale filters) */
+  img, 
+  .grayscale {
+    filter: none !important;
+    -webkit-filter: none !important;
+  }
+
+  /* Hide interactive or display-only elements */
+  nav,
+  footer,
+  #theme-toggle-btn,
+  #theme-toggle-btn-mobile,
+  #print-pdf-btn,
+  #print-pdf-btn-mobile,
+  #mobile-menu-btn,
+  #mobile-menu,
+  #gemini-orbs-container,
+  .mouse-spotlight,
+  #floating-social-dock,
+  #mobile-social-fab-container,
+  #btn-toggle-projects,
+  .copied-tooltip,
+  .pulse-indicator,
+  section#home > div.absolute.bottom-8,
+  #submitButton {
+    display: none !important;
+  }
+
+  /* Reset AOS (Animate on Scroll) transitions and offsets so everything is visible */
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    visibility: visible !important;
+  }
+
+  /* Page breaks and general full-bleed layout */
+  section {
+    page-break-before: always !important;
+    break-before: page !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    overflow: hidden !important;
+    padding: 3.5rem 5rem !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+
+  /* Allow projects section to flow to a second page (6 on page 1, 5 on page 2) */
+  section#projects {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+
+  section#home {
+    page-break-before: auto !important;
+    break-before: auto !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 2rem !important;
+  }
+
+  .max-w-5xl,
+  .max-w-3xl,
+  .max-w-2xl {
+    max-width: none !important;
+    width: 100% !important;
+  }
+
+  /* Prevent elements from breaking awkwardly across pages */
+  .clean-card,
+  .project-card-extra,
+  #journey .relative.pl-8.md\:pl-10.group,
+  p, h1, h2, h3, li, blockquote {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Scale text and margins down for slide formatting */
+  h2 {
+    font-size: 2.25rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  /* Make sections spacing smaller */
+  .space-y-16 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0 !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* --- ABOUT SECTION SCALE (Photo on Left, Text on Right) --- */
+  #about .grid {
+    display: grid !important;
+    grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+    gap: 3rem !important;
+    align-items: center !important;
+  }
+  #about .md\:col-span-5 {
+    grid-column: span 5 / span 5 !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+  }
+  #about .md\:col-span-7 {
+    grid-column: span 7 / span 7 !important;
+  }
+  #about p {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 0.75rem !important;
+  }
+  #about img {
+    max-width: 220px !important;
+  }
+
+  /* --- JOURNEY SECTION SCALE --- */
+  #journey .space-y-12 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 0.5rem !important;
+  }
+  #journey .relative.pl-8.md\:pl-10.group {
+    padding-left: 1.5rem !important;
+  }
+  #journey p {
+    font-size: 0.75rem !important;
+    line-height: 1.25 !important;
+    margin-top: 0.15rem !important;
+  }
+  #journey h3 {
+    font-size: 0.85rem !important;
+  }
+  #journey span {
+    font-size: 0.65rem !important;
+  }
+
+  /* --- PROJECTS SECTION SCALE (6 cards on Page 1, 5 cards on Page 2) --- */
+  #projects .max-w-xl {
+    max-width: none !important;
+    text-align: center !important;
+    width: 100% !important;
+    margin: 0 auto 1.5rem auto !important;
+  }
+  #projects h2,
+  #projects span {
+    text-align: center !important;
+    width: 100% !important;
+    display: block !important;
+  }
+
+  #projects .grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important; /* Centered horizontally */
+    gap: 1.5rem !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+  /* Restore images and layout for projects */
+  #projects img,
+  #projects .aspect-\[16\/10\],
+  #projects .bg-zinc-950.border-b {
+    display: block !important;
+  }
+  #projects .aspect-\[16\/10\] {
+    height: 110px !important; /* Elegant image height for 2-row layout */
+    width: 100% !important;
+    aspect-ratio: auto !important;
+    overflow: hidden !important;
+  }
+  #projects .clean-card {
+    width: calc((100% - 3rem) / 3) !important; /* Forces 3 columns */
+    box-sizing: border-box !important;
+    padding: 0.75rem !important;
+    height: 270px !important; /* Height limit to fit 2 rows per page */
+    border-radius: 0.75rem !important;
+    margin-bottom: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+  }
+
+  /* Vertical centering: Page 1 (6 cards) needs small margins, Page 2 (5 cards) needs slightly larger margins */
+  #projects .grid > div:nth-child(-n+6) {
+    margin-top: 1.5vh !important;
+    margin-bottom: 1.5vh !important;
+  }
+  #projects .grid > div:nth-child(n+7) {
+    margin-top: 8vh !important;
+    margin-bottom: 8vh !important;
+  }
+
+  #projects h3 {
+    font-size: 0.85rem !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.25rem !important;
+    line-height: 1.2 !important;
+  }
+  #projects p {
+    font-size: 0.72rem !important;
+    line-height: 1.35 !important;
+    margin-bottom: 0.25rem !important;
+    /* Limit description to exactly 2 lines to prevent overflow */
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+  #projects span {
+    font-size: 0.65rem !important;
+  }
+  #projects .mt-auto {
+    display: none !important;
+  }
+  .project-card-extra.hidden {
+    display: flex !important;
+  }
+
+  /* Break page after 6th card (2 rows of 3 on page 1) */
+  #projects .grid > div:nth-child(6) {
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  /* --- SKILLS SECTION SCALE --- */
+  #skills .clean-card {
+    display: block !important;
+    min-height: auto !important;
+    padding: 1.5rem !important;
+  }
+  #skills .flex-row.md\:flex-col,
+  #skills .scrollbar-thin {
+    display: none !important;
+  }
+  #skills .flex-grow.flex.items-center {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+  }
+  .console-panel-content {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  #skills .tech-tag {
+    padding: 0.4rem 0.6rem !important;
+    font-size: 0.75rem !important;
+    border-radius: 0.5rem !important;
+  }
+  #skills p.font-mono-tech {
+    font-size: 0.7rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* --- CONTACT SECTION SCALE --- */
+  #contact {
+    padding: 3rem 8rem !important;
+  }
+  #contact form {
+    max-width: 500px !important;
+    margin: 0 auto !important;
+  }
+  #contact input,
+  #contact textarea {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.8rem !important;
+  }
+  #contact label {
+    font-size: 0.75rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+  #contact .grid {
+    gap: 0.75rem !important;
+  }
+}
 
